@@ -97,22 +97,22 @@ const MainPage = () => {
         </section>
 
         <h2 id="skirts">חצאיות:</h2>
-        <section class="grid-container">
+        <section className="grid-container">
           {skirts.map((s) => (
-            <div class="item">
+            <div className="item">
               <img src={s.img} alt="" />
-              <div class="description">
+              <div className="description">
                 <p>s.description</p>
               </div>
-              <div class="item_cost">
+              <div className="item_cost">
                 <p>s.cost</p>
               </div>
-              <div class="item_insert">
+              <div className="item_insert">
                 <button>
-                  הוסף לעגלה <i class="fa fa-shopping-cart"></i>
+                  הוסף לעגלה <i className="fa fa-shopping-cart"></i>
                 </button>
                 <button>
-                  הוסף למעודפים <i class="fa fa-heart"></i>
+                  הוסף למעודפים <i className="fa fa-heart"></i>
                 </button>
               </div>
             </div>
