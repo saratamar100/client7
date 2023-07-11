@@ -1,0 +1,281 @@
+* {
+    box-sizing: border-box;
+}
+
+html body {
+    margin: 20px;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 255, 0.8);
+    margin: 0;
+}
+
+.header_-list {
+    padding-left: 1em;
+}
+
+.nav__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(195, 193, 185, 0.8);
+    margin: 0;
+    height: auto;
+    padding: 10px;
+    list-style: none;
+}
+
+.nav__item a,
+.nav__item a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.nav__item a:hover {
+    color: blue;
+
+}
+
+.image_logo {
+    width: 10%;
+}
+
+
+/* table */
+
+.blueTable {
+    border-collapse: collapse;
+    border: 1px #ccc solid;
+    color: rgb(77, 76, 76);
+    text-align: center;
+    margin: auto;
+}
+
+.blueTable th,
+.blueTable td {
+    padding: 20px;
+}
+
+
+.blueTable tr:nth-child(even) {
+    background: #eee
+}
+
+.blueTable thead {
+    background:  rgba(0, 0, 255, 0.8);
+}
+
+.blueTable thead th {
+    color: #FFF;
+}
+
+/* footer */
+
+footer {
+    background-color: rgba(195, 193, 185, 0.8);
+    color: black;
+    font-size: large;
+    padding: 2.5em 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.social-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.social-list__item,
+.header_-list__item {
+    display: inline-block;
+    list-style-type: none;
+    justify-content: space-between;
+    margin: 0 0.5em;
+    width: 20px;
+}
+
+
+.header_-list__link,
+.header_-list__link:visited {
+    color: white;
+}
+
+.social-list__link,
+.social-list__link:visited {
+    color: black;
+}
+
+
+/* grid - image */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    padding: 10px;
+}
+
+.item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+section div img {
+    width: 70%;
+    height: auto;
+}
+
+
+section div img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+h2 {
+    text-align: center;
+}
+
+.item_insert{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    padding: 10px 0px;
+}
+
+.item_insert button {
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 0% 40% 0%;
+} 
+
+.item_insert button:nth-child(2):hover{
+    background-color: rgba(204, 204, 204, 0.301);
+} 
+
+.item_insert button:first-child:hover{
+    background-color: rgba(0, 0, 255, 0.2);
+} 
+
+.item_cost p {
+    font-weight: bolder;
+}
+
+.description p {
+    font-size: large;
+}
+
+
+/* Shopping Card Page */
+.main_shopping_card{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.item_cart button{
+    width: auto;
+    height: auto;
+    background-color: white;
+    color: black;
+    margin: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+}
+
+.item_cart button:hover{
+    background-color: rgba(204, 204, 204, 0.301);
+    transform: scale(1.1);
+}
+
+.main_shopping_card button a,
+.main_shopping_card button a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.image_center {
+    width: 200px;
+  }
+
+.main_shopping_card{
+    text-align: center;
+    margin: 60px 0 12px 0;
+    font-size: large;
+  }
+
+.move_left {
+    margin-right: 35px;
+}
+
+.height_size {
+    height: 170px;
+}
+
+/*responsive*/
+
+@media screen and (max-width: 1100px) {
+    .grid-container {
+
+        grid-template-columns: repeat(3, auto);
+    }
+    .height_size {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .grid-container {
+
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .blueTable th,
+    .blueTable td {
+        padding: 10px;
+    }
+    .image_logo{
+        width: 100px;
+    }
+
+    .image_center {
+        width: 150px;
+      }
+
+    .height_size {
+        height: 130px;
+    }
+
+}
+
+@media screen and (max-width: 570px) {
+    .grid-container {
+
+        grid-template-columns: auto;
+    }
+    .nav__list{
+        flex-direction: column;
+    }
+    .nav__item{
+        margin: 5px;;
+    }
+    .blueTable th,
+    .blueTable td {
+        padding: 5px;
+    }
+
+    .height_size {
+        height: 120px;
+    }
+
+}
