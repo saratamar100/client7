@@ -3,7 +3,6 @@ import "../style/style.css";
 //import "../style/Style_sign_log.css";
 
 function Layout() {
-  alert("hi");
   return (
     <div>
       <header>
@@ -11,7 +10,7 @@ function Layout() {
           <img className="image_logo" src="./image/logo2.png" alt="" />
           <ul className="header_-list">
             <li className="header_-list__item">
-              <Link className="header_-list__link" to="./main_page.html">
+              <Link className="header_-list__link" to="/">
                 <i className="fa fa-home"></i>
               </Link>
             </li>
