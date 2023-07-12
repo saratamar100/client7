@@ -1,17 +1,25 @@
-import React from 'react';
-import "../style/Style_sign_log.css";
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  return (
-    <main>
+    <link rel="stylesheet" href="httpas://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Update these with your own fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Style_sign_log.css">
+    <title>התחברות</title>
+    <link rel="icon" href="./image/icon.png" type="image/icon type">
+</head>
+    <body>
+        <main>
             <form action="./main_page.html" method="POST">
                 <fieldset>
                     <div class="imgcontainer">
-                        <img src="./image/logo.png" alt="Avatar" class="avatar"/>
+                        <img src="./image/logo.png" alt="Avatar" class="avatar">
                     </div>
 
                     <legend id="log_in">התחברות לאתר</legend>
@@ -31,7 +39,7 @@ const Login = () => {
                     
                     <div>
                         <label>
-                            <input type="checkbox" checked="checked" name="remember" id="remember"> תזכור אותי </input>
+                            <input type="checkbox" checked="checked" name="remember" id="remember"> תזכור אותי 
                         </label>
                     </div>
 
@@ -42,7 +50,5 @@ const Login = () => {
                 </fieldset>
             </form>
         </main>
-  );
-};
-
-export default Login;
+    </body>
+</html>
