@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../style/style.css";
 
 const MainPage = () => {
@@ -65,9 +66,9 @@ const MainPage = () => {
             </a>
           </li>
           <li className="nav__item">
-            <a href="log_in.html" className="nav__link">
+            <Link to="/login" className="nav__link">
               התחברות / הרשמה
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
