@@ -6,9 +6,24 @@ function Layout() {
   return (
     <div>
       <header>
-        <div className="header">
-          <img className="image_logo" src="./image/logo2.png" alt="" />
-          <ul className="header_-list">
+        <div class="header">
+          <img class="image_logo" src="./image/logo2.png" alt="" />
+          <ul class="header_-list">
+            <li class="header_-list__item">
+              <Link class="header_-list__link" to="/login">
+                <i class="fa fa-sign-in"></i>
+              </Link>
+            </li>
+            <li class="header_-list__item">
+              <Link class="header_-list__link" to="/love">
+                <i class="fa fa-heart"></i>
+              </Link>
+            </li>
+            <li class="header_-list__item">
+              <Link class="header_-list__link" to="/cart">
+                <i class="fa fa-shopping-cart"></i>
+              </Link>
+            </li>
             <li className="header_-list__item">
               <Link className="header_-list__link" to="/">
                 <i className="fa fa-home"></i>

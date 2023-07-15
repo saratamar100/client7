@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "../style/Style_sign_log.css"
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <main>
       <form action="./main_page.html" method="GET">
@@ -82,7 +83,7 @@ const SignIn = () => {
 
           <div className="container">
             <button type="reset" className="cancelbtn">איפוס</button>
-            <span className="psw"><a href="./log_in.html">יש לי כבר חשבון</a></span>
+            <span className="psw"><Link to="/login">יש לי כבר חשבון</Link></span>
           </div>
         </fieldset>
       </form>
@@ -90,4 +91,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

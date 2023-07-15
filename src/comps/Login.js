@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/Style_sign_log.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const handleSubmit = (event) => {
@@ -65,7 +66,7 @@ const Login = () => {
               <a href="./error_page.html">שכחתי סיסמא</a>
               <tr>
                 {" "}
-                / <a href="./sign_in.html">אין לי חשבון</a>
+                / <Link to="./signup">אין לי חשבון</Link>
               </tr>
             </span>
           </div>
