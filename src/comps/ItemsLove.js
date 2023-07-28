@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/style.css";
 
-const ItemsLove = () => {
+const ItemsLove = ({ user }) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems([
@@ -13,6 +13,26 @@ const ItemsLove = () => {
       { cost: 5, img: "", description: "adF" },
     ]);
   }, []);
+
+  if (user == null)
+    return (
+      <main className="main_shopping_card">
+        <img
+          className="image_center height_size"
+          src="./image/Heart.png"
+          alt="item_love"
+        />
+        <p>בשביל לראות פריטים מועדפים עליך להתחבר</p>
+        <div className="item_cart">
+          <button>
+            <Link to="/login">
+              התחבר <i className="fa fa-sign-in"></i>
+            </Link>
+          </button>
+        </div>
+      </main>
+    );
+
   if (items.length == 0)
     return (
       <main className="main_shopping_card">
@@ -24,9 +44,9 @@ const ItemsLove = () => {
         <p>עדיין לא הוספת פריטים מועדפים :(</p>
         <div className="item_cart">
           <button>
-            <a href="./main_page.html">
+            <Link to="/">
               המשך קניה <i className="fa fa-shopping-cart"></i>
-            </a>
+            </Link>
           </button>
         </div>
       </main>

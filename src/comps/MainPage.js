@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/style.css";
 
-const MainPage = () => {
+const MainPage = ({ user, logout }) => {
   const [shirts, setShirts] = useState([]);
   const [skirts, setSkirts] = useState([]);
   const [dresses, setDresses] = useState([]);
@@ -16,73 +16,36 @@ const MainPage = () => {
         description: "חולצה יפה מאוד",
         cost: 56,
         img: pic,
+        id: 1,
       },
       {
         description: "חולצה יפה מאוד",
         cost: 5,
         img: pic,
+        id: 2,
       },
       {
         description: "חולצה יפה מאוד",
         cost: 5,
         img: pic,
+        id: 3,
       },
       {
         description: "חולצה יפה מאוד",
         cost: 5,
         img: pic,
+        id: 4,
       },
     ];
     setShirts(l);
-    setSkirts(l);
   }, []);
   return (
     <>
-      <nav className="nav">
-        <ul className="nav__list">
-          <li className="nav__item">
-            <a href="#shirts" className="nav__link">
-              חולצות
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#skirts" className="nav__link">
-              חצאיות
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#dresses" className="nav__link">
-              שמלות
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#shoes" className="nav__link">
-              נעליים
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#accessories" className="nav__link">
-              אקססוריז
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#size_table" className="nav__link">
-              המרת מידות
-            </a>
-          </li>
-          <li className="nav__item">
-            <Link to="/login" className="nav__link">
-              התחברות / הרשמה
-            </Link>
-          </li>
-        </ul>
-      </nav>
-
       <main>
         <h2 id="shirts">חולצות:</h2>
         <section className="grid-container">
           {shirts.map((s) => (
-            <div className="item">
+            <div className="item" key={s.id}>
               <img src={s.img} alt="" />
               <div className="description">
                 <p>{s.description}</p>
@@ -105,7 +68,7 @@ const MainPage = () => {
         <h2 id="skirts">חצאיות:</h2>
         <section className="grid-container">
           {skirts.map((s) => (
-            <div className="item">
+            <div className="item" key={s.id}>
               <img src={s.img} alt="" />
               <div className="description">
                 <p>{s.description}</p>
@@ -128,7 +91,7 @@ const MainPage = () => {
         <h2 id="dresses">שמלות:</h2>
         <section className="grid-container">
           {dresses.map((d) => (
-            <div className="item">
+            <div className="item" key={d.id}>
               <img src={d.img} alt="" />
               <div className="description">
                 <p>d.description</p>
@@ -151,7 +114,7 @@ const MainPage = () => {
         <h2 id="shoes">נעליים:</h2>
         <section className="grid-container">
           {shoes.map((s) => (
-            <div className="item">
+            <div className="item" key={s.id}>
               <img src={s.img} alt="" />
               <div className="description">
                 <p>{s.description}</p>
@@ -174,7 +137,7 @@ const MainPage = () => {
         <h2 id="accessories">אקססוריז:</h2>
         <section className="grid-container">
           {accessories.map((a) => (
-            <div className="item">
+            <div className="item" key={a.id}>
               <img src={a.img} alt="" />
               <div className="description">
                 <p>{a.description}</p>

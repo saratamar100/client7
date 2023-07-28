@@ -1,15 +1,18 @@
 import React from "react";
 import "../style/Style_sign_log.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const handleSubmit = (event) => {
+const Login = ({ login }) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    login({ username: "gever", password: "gever!" });
+    navigate("/");
   };
 
   return (
     <main>
-      <form action="./main_page.html" method="POST">
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <div class="imgcontainer">
             <img src="./image/logo.png" alt="Avatar" class="avatar" />
