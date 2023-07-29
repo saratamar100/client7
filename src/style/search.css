@@ -1,21 +1,39 @@
-section {
+.search-section {
     margin: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-h2 {
+  }
+  
+  .search-title {
     font-size: 24px;
     margin-bottom: 10px;
-}
-
-input[type="search"] {
+  }
+  
+  .search-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
-}
-
+  }
+  
+  .sort-button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .sort-button.active {
+    background-color: #ccc;
+  }
+  
+  /* Optional: Visual indication for the focused search input */
+  .search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 3px #007bff;
+  }
+  

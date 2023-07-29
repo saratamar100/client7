@@ -6,15 +6,25 @@ html body {
     margin: 20px;
 }
 
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
-  }
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0; 
+    height: 10px;
+}
+main{
+    margin-top: 100px;
+}
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 255, 0.8);
+    background-color: rgba(0, 0, 255, 1);
     margin: 0;
 }
 
@@ -26,7 +36,7 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(195, 193, 185, 0.8);
+    background-color: rgba(195, 193, 185, 1);
     margin: 0;
     height: auto;
     padding: 10px;
@@ -70,7 +80,7 @@ body{
 }
 
 .blueTable thead {
-    background:  rgba(0, 0, 255, 0.8);
+    background: rgba(0, 0, 255, 1);
 }
 
 .blueTable thead th {
@@ -80,7 +90,7 @@ body{
 /* footer */
 
 footer {
-    background-color: rgba(195, 193, 185, 0.8);
+    background-color: rgba(195, 193, 185, 1);
     color: black;
     font-size: large;
     padding: 2.5em 0;
@@ -146,7 +156,7 @@ h2 {
     text-align: center;
 }
 
-.item_insert{
+.item_insert {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     padding: 10px 0px;
@@ -158,15 +168,15 @@ h2 {
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 0% 40% 0%;
-} 
+}
 
-.item_insert button:nth-child(2):hover{
+.item_insert button:nth-child(2):hover {
     background-color: rgba(204, 204, 204, 0.301);
-} 
+}
 
-.item_insert button:first-child:hover{
+.item_insert button:first-child:hover {
     background-color: rgba(0, 0, 255, 0.2);
-} 
+}
 
 .item_cost p {
     font-weight: bolder;
@@ -178,12 +188,12 @@ h2 {
 
 
 /* Shopping Card Page */
-.main_shopping_card{
+.main_shopping_card {
     margin-top: 50px;
     text-align: center;
 }
 
-.item_cart button{
+.item_cart button {
     width: auto;
     height: auto;
     background-color: white;
@@ -193,7 +203,7 @@ h2 {
     padding: 10px;
 }
 
-.item_cart button:hover{
+.item_cart button:hover {
     background-color: rgba(204, 204, 204, 0.301);
     transform: scale(1.1);
 }
@@ -206,13 +216,13 @@ h2 {
 
 .image_center {
     width: 200px;
-  }
+}
 
-.main_shopping_card{
+.main_shopping_card {
     text-align: center;
     margin: 60px 0 12px 0;
     font-size: large;
-  }
+}
 
 .move_left {
     margin-right: 35px;
@@ -229,6 +239,7 @@ h2 {
 
         grid-template-columns: repeat(3, auto);
     }
+
     .height_size {
         height: 150px;
     }
@@ -244,13 +255,14 @@ h2 {
     .blueTable td {
         padding: 10px;
     }
-    .image_logo{
+
+    .image_logo {
         width: 100px;
     }
 
     .image_center {
         width: 150px;
-      }
+    }
 
     .height_size {
         height: 130px;
@@ -263,12 +275,16 @@ h2 {
 
         grid-template-columns: auto;
     }
-    .nav__list{
+
+    .nav__list {
         flex-direction: column;
     }
-    .nav__item{
-        margin: 5px;;
+
+    .nav__item {
+        margin: 5px;
+        ;
     }
+
     .blueTable th,
     .blueTable td {
         padding: 5px;

@@ -16,22 +16,28 @@ const Shirts = () => {
         id: 1,
       },
       {
-        description: "חולצה יפה מאוד",
-        cost: 5,
+        description: "החולצה יפה מאוד",
+        cost: 51,
         img: pic,
         id: 2,
       },
       {
         description: "חולצה יפה מאוד",
-        cost: 5,
+        cost: 55,
         img: pic,
         id: 3,
       },
       {
         description: "חולצה יפה מאוד",
-        cost: 5,
+        cost: 59,
         img: pic,
         id: 4,
+      },
+      {
+        description: "חולצה יפה מאוד",
+        cost: 59,
+        img: pic,
+        id: 5,
       },
     ];
     setShirts(l);

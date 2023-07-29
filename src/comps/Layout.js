@@ -1,6 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../style/style.css";
-//import "../style/Style_sign_log.css";
 
 function Layout({user, logout}) {
   return (
