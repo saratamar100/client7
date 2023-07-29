@@ -35,34 +35,34 @@ function Layout({user, logout}) {
         <nav className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <a href="#shirts" className="nav__link">
+            <Link to="/shirts" className="nav__link">
               חולצות
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
-            <a href="#skirts" className="nav__link">
+            <Link to="/skirts" className="nav__link">
               חצאיות
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
-            <a href="#dresses" className="nav__link">
+            <Link to="/dresses" className="nav__link">
               שמלות
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
-            <a href="#shoes" className="nav__link">
+            <Link to="/shoes" className="nav__link">
               נעליים
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
-            <a href="#accessories" className="nav__link">
+            <Link to="/accessories" className="nav__link">
               אקססוריז
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
-            <a href="#size_table" className="nav__link">
+            <Link to="/size" className="nav__link">
               המרת מידות
-            </a>
+            </Link>
           </li>
           <li className="nav__item">
             {user == null && (

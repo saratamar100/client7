@@ -7,6 +7,12 @@ import ShoppingCart from "./comps/ShoppingCart";
 import SignUp from "./comps/SignUp";
 import ErrorPage from "./comps/ErrorPage";
 import Layout from "./comps/Layout";
+import Shirts from "./comps/Shirts";
+import Skirts from "./comps/Skirts";
+import Shoes from "./comps/Shoes";
+import Dresses from "./comps/Dresses";
+import Accessories from "./comps/Accessories";
+import TableSize from "./comps/TableSize";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -31,6 +37,12 @@ const App = () => {
           />
           <Route path="/love" element={<ItemsLove user={user} />} />
           <Route path="/cart" element={<ShoppingCart user={user} />} />
+          <Route path="/shirts" element={<Shirts />} />
+          <Route path="/skirts" element={<Skirts />} />
+          <Route path="/dresses" element={<Dresses />} />
+          <Route path="/shoes" element={<Shoes />} />
+          <Route path="/accessories" element={<Accessories />} />
+          <Route path="/size" element={<TableSize />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
