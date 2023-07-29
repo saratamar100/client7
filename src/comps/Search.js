@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchList from "./SearchList";
+import "../style/search.css"
 
 function Search({ items }) {
   const [searchField, setSearchField] = useState("");
