@@ -1,11 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Style_sign_log.css";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // login({ username: "gever", password: "gever!" });
+    // navigate("/");
+  };
+
   return (
     <main>
-      <form action="./main_page.html" method="GET">
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <legend id="sign_in">הרשמה לאתר</legend>
           <div class="imgcontainer">
