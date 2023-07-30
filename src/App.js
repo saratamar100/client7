@@ -13,39 +13,37 @@ import Shoes from "./comps/Shoes";
 import Dresses from "./comps/Dresses";
 import Accessories from "./comps/Accessories";
 import TableSize from "./comps/TableSize";
+import { UserContext } from "./comps/UserContext";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const login = useCallback(
-    (u) => {
-      setUser((user) => ({ ...user, ...u }));
-    },
-    [user]
-  );
-  const logout = useCallback(() => {
-    setUser(null);
-  }, [user]);
+  // const login = useCallback(
+  //   (u) => {
+  //     setUser((user) => ({ ...user, ...u }));
+  //   },
+  //   [user]
+  // );
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout user={user} logout={logout} />}>
-          <Route index element={<MainPage user={user} />} />
-          <Route path="/login" element={<Login user={user} login={login} />} />
-          <Route
-            path="/signup"
-            element={<SignUp user={user} login={login} />}
-          />
-          <Route path="/love" element={<ItemsLove user={user} />} />
-          <Route path="/cart" element={<ShoppingCart user={user} />} />
-          <Route path="/shirts" element={<Shirts />} />
-          <Route path="/skirts" element={<Skirts />} />
-          <Route path="/dresses" element={<Dresses />} />
-          <Route path="/shoes" element={<Shoes />} />
-          <Route path="/accessories" element={<Accessories />} />
-          <Route path="/size" element={<TableSize />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<MainPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/love" element={<ItemsLove />} />
+            <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/shirts" element={<Shirts />} />
+            <Route path="/skirts" element={<Skirts />} />
+            <Route path="/dresses" element={<Dresses />} />
+            <Route path="/shoes" element={<Shoes />} />
+            <Route path="/accessories" element={<Accessories />} />
+            <Route path="/size" element={<TableSize />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 };

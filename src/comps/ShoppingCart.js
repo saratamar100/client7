@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../style/style.css";
 import { Link } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
-const ShoppingCart = ({ user }) => {
+const ShoppingCart = () => {
+  const { user, setUser } = useContext(UserContext);
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems([

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../style/Style_sign_log.css";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
-const Login = ({ login }) => {
+const Login = () => {
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    login({ username: "gever", password: "gever!" });
+    setUser((user) => ({ username: "gever", password: "gever!" }));
     navigate("/");
   };
 

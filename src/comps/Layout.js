@@ -1,7 +1,10 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../style/style.css";
+import { UserContext } from "./UserContext";
+import { useContext } from "react";
 
-function Layout({user, logout}) {
+function Layout() {
+  const { user, setUser } = useContext(UserContext);
   return (
     <div>
       <header>
@@ -32,51 +35,51 @@ function Layout({user, logout}) {
         </div>
 
         <nav className="nav">
-        <ul className="nav__list">
-          <li className="nav__item">
-            <Link to="/shirts" className="nav__link">
-              חולצות
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/skirts" className="nav__link">
-              חצאיות
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/dresses" className="nav__link">
-              שמלות
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/shoes" className="nav__link">
-              נעליים
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/accessories" className="nav__link">
-              אקססוריז
-            </Link>
-          </li>
-          <li className="nav__item">
-            <Link to="/size" className="nav__link">
-              המרת מידות
-            </Link>
-          </li>
-          <li className="nav__item">
-            {user == null && (
-              <Link to="/login" className="nav__link">
-                התחברות / הרשמה
+          <ul className="nav__list">
+            <li className="nav__item">
+              <Link to="/shirts" className="nav__link">
+                חולצות
               </Link>
-            )}
-            {user != null && (
-              <button onClick={logout} className="nav__link">
-                התנתקות
-              </button>
-            )}
-          </li>
-        </ul>
-      </nav>
+            </li>
+            <li className="nav__item">
+              <Link to="/skirts" className="nav__link">
+                חצאיות
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="/dresses" className="nav__link">
+                שמלות
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="/shoes" className="nav__link">
+                נעליים
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="/accessories" className="nav__link">
+                אקססוריז
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link to="/size" className="nav__link">
+                המרת מידות
+              </Link>
+            </li>
+            <li className="nav__item">
+              {user == null && (
+                <Link to="/login" className="nav__link">
+                  התחברות / הרשמה
+                </Link>
+              )}
+              {user != null && (
+                <button onClick={() => setUser(null)} className="nav__link">
+                  התנתקות
+                </button>
+              )}
+            </li>
+          </ul>
+        </nav>
       </header>
 
       <Outlet />

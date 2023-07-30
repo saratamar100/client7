@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/style.css";
+import { UserContext } from "./UserContext";
 
-const ItemsLove = ({ user }) => {
+const ItemsLove = () => {
+  const { user, setUser } = useContext(UserContext);
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems([
