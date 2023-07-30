@@ -69,7 +69,7 @@ const Login = ({ login }) => {
               <a href="./error_page.html">שכחתי סיסמא</a>
               <tr>
                 {" "}
-                / <Link to="./signup">אין לי חשבון</Link>
+                / <Link to="/signup">אין לי חשבון</Link>
               </tr>
             </span>
           </div>

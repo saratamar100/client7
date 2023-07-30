@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import "../style/Style_sign_log.css"
+import React from "react";
+import { Link } from "react-router-dom";
+import "../style/Style_sign_log.css";
 
 const SignUp = () => {
   return (
@@ -8,62 +8,110 @@ const SignUp = () => {
       <form action="./main_page.html" method="GET">
         <fieldset>
           <legend id="sign_in">הרשמה לאתר</legend>
-          <div className="imgcontainer">
-            <img src="./image/logo.png" alt="Avatar" className="avatar" />
+          <div class="imgcontainer">
+            <img src="./image/logo.png" alt="Avatar" class="avatar" />
           </div>
 
           <div>
-            <label htmlFor="username">שם משתמש:</label>
-            <input className="big" type="text" placeholder="הכנס שם משתמש" id="username" name="Username" required />
+            <label for="username">שם משתמש:</label>
+            <input
+              class="big"
+              type="text"
+              placeholder="הכנס שם משתמש"
+              id="username"
+              name="Username"
+              required
+            />
           </div>
 
           <div>
-            <label className="bold font_big" htmlFor="date">תאריך לידה:</label>
-            <input className="small" type="date" id="date" placeholder="הכנס סיסמא" name="date" />
+            <label class="bold font_big" for="date">
+              תאריך לידה:
+            </label>
+            <input
+              class="small"
+              type="date"
+              id="date"
+              placeholder="הכנס סיסמא"
+              name="date"
+            />
           </div>
 
           <div>
-            <label htmlFor="tel">מספר טלפון:</label>
-            <input className="big" type="tel" id="tel" placeholder="הכנס מספר פלאפון" name="Tel" required />
+            <label for="tel">מספר טלפון:</label>
+            <input
+              class="big"
+              type="tel"
+              id="tel"
+              placeholder="הכנס מספר פלאפון"
+              name="Tel"
+              required
+            />
           </div>
 
           <div>
-            <label htmlFor="email">מייל:</label>
-            <input className="big" type="email" placeholder="הכנס כתובת email" id="email" name="Email" required />
+            <label for="email">מייל:</label>
+            <input
+              class="big"
+              type="email"
+              placeholder="הכנס כתובת email"
+              id="email"
+              name="Email"
+              required
+            />
           </div>
 
           <div>
-            <label htmlFor="password">סיסמא:</label>
-            <input className="big" type="password" id="password" placeholder="הכנס סיסמא" name="Password" required />
+            <label for="password">סיסמא:</label>
+            <input
+              class="big"
+              type="password"
+              id="password"
+              placeholder="הכנס סיסמא"
+              name="Password"
+              required
+            />
           </div>
 
           <div>
-            <label htmlFor="password_again">הכנס שוב את הסיסמא:</label>
-            <input className="big" type="password" id="password_again" placeholder="הכנס שוב את הסיסמא" name="Password_again" required />
+            <label for="password_again">הכנס שוב את הסיסמא:</label>
+            <input
+              class="big"
+              type="password"
+              id="password_again"
+              placeholder="הכנס שוב את הסיסמא"
+              name="Password_again"
+              required
+            />
           </div>
 
           <div>
             <label>מידת בגדים:</label>
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="one_size" />
-            <label htmlFor="vehicle1"> OS </label>
+            <input
+              type="checkbox"
+              id="vehicle1"
+              name="vehicle1"
+              value="one_size"
+            />
+            <label for="vehicle1"> OS </label>
             <input type="checkbox" id="vehicle2" name="vehicle2" value="xxs" />
-            <label htmlFor="vehicle2"> XXS - 32 </label>
+            <label for="vehicle2"> XXS - 32 </label>
             <input type="checkbox" id="vehicle3" name="vehicle3" value="xs" />
-            <label htmlFor="vehicle3"> XS - 34 </label>
+            <label for="vehicle3"> XS - 34 </label>
             <input type="checkbox" id="vehicle4" name="vehicle4" value="s" />
-            <label htmlFor="vehicle4"> S - 36 </label>
+            <label for="vehicle4"> S - 36 </label>
             <input type="checkbox" id="vehicle5" name="vehicle5" value="m" />
-            <label htmlFor="vehicle5"> M - 38 </label>
+            <label for="vehicle5"> M - 38 </label>
             <input type="checkbox" id="vehicle6" name="vehicle6" value="l" />
-            <label htmlFor="vehicle6"> L - 40 </label>
+            <label for="vehicle6"> L - 40 </label>
             <input type="checkbox" id="vehicle7" name="vehicle7" value="xl" />
-            <label htmlFor="vehicle7"> XL - 42 </label>
+            <label for="vehicle7"> XL - 42 </label>
             <input type="checkbox" id="vehicle8" name="vehicle8" value="xxl" />
-            <label htmlFor="vehicle8"> XXL - 44 </label>
+            <label for="vehicle8"> XXL - 44 </label>
           </div>
 
           <div>
-            <label htmlFor="shoes_size">מידת נעליים:</label>
+            <label for="shoes_size">מידת נעליים:</label>
             <select id="shoes_size" name="Shoes_size" required>
               <option value="34-36">34-36</option>
               <option value="36-38">36-38</option>
@@ -74,16 +122,27 @@ const SignUp = () => {
           </div>
 
           <div>
-            <textarea className="big" id="point" name="point" placeholder="הערות"></textarea>
+            <textarea
+              class="big"
+              id="point"
+              name="point"
+              placeholder="הערות"
+            ></textarea>
           </div>
 
           <div>
-            <button type="submit" onClick="">הירשם</button>
+            <button type="submit" onclick="">
+              הירשם
+            </button>
           </div>
 
-          <div className="container">
-            <button type="reset" className="cancelbtn">איפוס</button>
-            <span className="psw"><Link to="/login">יש לי כבר חשבון</Link></span>
+          <div class="container">
+            <button type="reset" class="cancelbtn">
+              איפוס
+            </button>
+            <span class="psw">
+              <Link to="/login">יש לי כבר חשבון</Link>
+            </span>
           </div>
         </fieldset>
       </form>

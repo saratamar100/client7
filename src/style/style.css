@@ -168,6 +168,7 @@ h2 {
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 0% 40% 0%;
+    color: black;
 }
 
 .item_insert button:nth-child(2):hover {
