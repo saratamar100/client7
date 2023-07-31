@@ -4,6 +4,12 @@ import "../style/style.css";
 import { UserContext } from "./UserContext";
 
 const ItemsLove = () => {
+  useEffect(() => {
+    document.title = "מועדפים";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   const { user, setUser } = useContext(UserContext);
   const [items, setItems] = useState([]);
   useEffect(() => {

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../style/style.css";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "שגיאה";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   return (
     <main class="main_shopping_card">
         <img src="" alt=""/>

@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 const ShoppingCart = () => {
+  useEffect(() => {
+    document.title = "עגלה";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   const { user, setUser } = useContext(UserContext);
   const [items, setItems] = useState([]);
   useEffect(() => {

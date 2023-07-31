@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../style/Style_sign_log.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "כניסה";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {

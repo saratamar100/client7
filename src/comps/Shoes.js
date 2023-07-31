@@ -4,6 +4,12 @@ import "../style/style.css";
 import Search from "./Search";
 
 const Shoes = () => {
+  useEffect(() => {
+    document.title = "נעליים";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   const shoes = [];
   return (
     <main>

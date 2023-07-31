@@ -4,6 +4,9 @@ import "../style/style.css";
 import { UserContext } from "./UserContext";
 
 const MainPage = () => {
+  useEffect(() => {
+    document.title = "חנות בגדים";
+  }, []);
   const { user, setUser } = useContext(UserContext);
 
   return <main></main>;

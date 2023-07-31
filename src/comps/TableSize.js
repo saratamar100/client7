@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import "../style/style.css";
 
 const TableSize = () => {
+  useEffect(() => {
+    document.title = "מידות";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   return (
     <main>
       <section id="size_table">

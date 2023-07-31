@@ -4,6 +4,12 @@ import "../style/style.css";
 import Search from "./Search";
 
 const Accesories = () => {
+  useEffect(() => {
+    document.title = "אקססוריז";
+    return () => {
+      document.title = "חנות בגדים";
+    };
+  }, []);
   const accessories = [];
   return (
     <main>
