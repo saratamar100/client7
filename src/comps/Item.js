@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../style/style.css";
-import Search from "./Search";
 
 const Item = () => {
   const params = useParams();
@@ -42,6 +41,13 @@ const Item = () => {
   const isSizeAvailable = (size) => {
     return item.availableSizes.includes(size);
   };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+  };
+  const handleAddToLove = (e) => {
+    e.preventDefault();
+  };
   if (!item.availableSizes) return <main></main>; ///////////!
   else
     return (
@@ -70,10 +76,10 @@ const Item = () => {
             </p>
           )}
           <div>
-            <button>
+            <button onClick={handleAddToCart}>
               הוסף לעגלה <i className="fa fa-shopping-cart"></i>
             </button>
-            <button>
+            <button onClick={handleAddToLove}>
               הוסף למעודפים <i className="fa fa-heart"></i>
             </button>
           </div>
