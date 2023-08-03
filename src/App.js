@@ -15,6 +15,7 @@ import Accessories from "./comps/Accessories";
 import TableSize from "./comps/TableSize";
 import { UserContext } from "./comps/UserContext";
 import Item from "./comps/Item";
+import Logout from "./comps/Logout";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/love" element={<ItemsLove />} />
             <Route path="/cart" element={<ShoppingCart />} />

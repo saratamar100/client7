@@ -73,9 +73,9 @@ function Layout() {
                 </Link>
               )}
               {user != null && (
-                <button onClick={() => setUser(null)} className="nav__link">
+                <Link to="/logout" className="nav__link">
                   התנתקות
-                </button>
+                </Link>
               )}
             </li>
           </ul>
