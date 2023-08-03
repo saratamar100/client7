@@ -23,6 +23,10 @@ function Search({ items }) {
           return a.description.localeCompare(b.description);
         case "des_desc":
           return b.description.localeCompare(a.description);
+        case "time_asc":
+          return a.time - b.time;
+        case "time_desc":
+          return  b.time - a.time;
       }
     });
 
@@ -59,6 +63,8 @@ function Search({ items }) {
           <option value="price_desc">Highest to Lowest Price</option>
           <option value="des_asc">Description A-Z</option>
           <option value="des_desc">Description Z-A</option>
+          <option value="time_asc">New to Old</option>
+          <option value="time_desc">Old to New</option>
         </select>
       </div>
       {searchList()}
