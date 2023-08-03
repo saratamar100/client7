@@ -18,6 +18,18 @@ const Login = () => {
     navigate("/");
   };
 
+  if (user != null)
+    return (
+      <main style={{marginTop: "200px"}}>
+      <div>
+        <p>u r log in</p>
+        <button onClick={()=>{setUser(null)}}>
+          התנתקות
+        </button>
+      </div>
+      </main>
+    );
+
   return (
     <main>
       <form onSubmit={handleSubmit}>

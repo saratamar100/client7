@@ -87,24 +87,28 @@ function Layout() {
       <footer>
         <ul className="social-list">
           <li className="social-list__item">
-            <Link className="social-list__link" to="#">
+            <a className="social-list__link" href="#" target="_blank">
               <i className="fab fa-facebook"></i>
-            </Link>
+            </a>
           </li>
           <li className="social-list__item">
-            <Link className="social-list__link" to="#">
+            <a className="social-list__link" href="#" target="_blank">
               <i className="fab fa-instagram"></i>
-            </Link>
+            </a>
           </li>
           <li className="social-list__item">
-            <Link className="social-list__link" to="#">
+            <a
+              className="social-list__link"
+              href=" https://wa.me/972555555555"
+              target="_blank"
+            >
               <i className="fab fa-whatsapp"></i>
-            </Link>
+            </a>
           </li>
           <li className="social-list__item">
-            <Link className="social-list__link" to="#">
+            <a className="social-list__link" href="#" target="_blank">
               <i className="fa fa-envelope"></i>
-            </Link>
+            </a>
           </li>
         </ul>
         <p>&copy; כל הזכויות שמורות לשרה וגילי.</p>
