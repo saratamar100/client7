@@ -73,10 +73,10 @@ const ShoppingCart = () => {
             </div>
             <div className="item_insert">
               <button>
-                הוסף לעגלה <i className="fa fa-shopping-cart"></i>
+                הסר העגלה <i className="fa fa-shopping-cart"></i>
               </button>
               <button>
-                הסר מהמועדפים <i className="fa fa-heart"></i>
+                הוסף למועדפים <i className="fa fa-heart"></i>
               </button>
             </div>
           </div>

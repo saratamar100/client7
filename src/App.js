@@ -1,3 +1,4 @@
+import "./App.css";
 import React, { useCallback, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./comps/MainPage";
