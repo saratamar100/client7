@@ -141,13 +141,13 @@ footer {
     text-align: center;
 }
 
-section div img {
+.img {
     width: 70%;
     height: auto;
 }
 
 
-section div img:hover {
+.img:hover {
     transform: scale(1.1);
     opacity: 0.8;
 }

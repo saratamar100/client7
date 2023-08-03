@@ -14,6 +14,7 @@ import Dresses from "./comps/Dresses";
 import Accessories from "./comps/Accessories";
 import TableSize from "./comps/TableSize";
 import { UserContext } from "./comps/UserContext";
+import Item from "./comps/Item";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/dresses" element={<Dresses />} />
             <Route path="/shoes" element={<Shoes />} />
             <Route path="/accessories" element={<Accessories />} />
+            <Route path="/item/:id" element={<Item />} />
             <Route path="/size" element={<TableSize />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
