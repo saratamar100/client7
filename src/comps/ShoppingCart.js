@@ -14,13 +14,21 @@ const ShoppingCart = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     setItems([
-      { cost: 5, img: "", description: "adF" },
-      { cost: 5, img: "", description: "adF" },
-      { cost: 5, img: "", description: "adF" },
-      { cost: 5, img: "", description: "adF" },
-      { cost: 5, img: "", description: "adF" },
+      { cost: 5, img: "", description: "adF", id: 1 },
+      { cost: 5, img: "", description: "adF", id: 2 },
+      { cost: 5, img: "", description: "adF", id: 3 },
+      { cost: 5, img: "", description: "adF", id: 4 },
+      { cost: 5, img: "", description: "adF", id: 5 },
     ]);
   }, []);
+  const handleRemoveFromCart = (id) => {
+    //fetch
+    //set items
+  };
+  const handleAddToLove = (id) => {
+    //fetch
+    //set
+  };
   if (user == null)
     return (
       <main className="main_shopping_card">
@@ -72,15 +80,18 @@ const ShoppingCart = () => {
               <p>{i.cost} ש"ח</p>
             </div>
             <div className="item_insert">
-              <button>
-                הסר העגלה <i className="fa fa-shopping-cart"></i>
+              <button onClick={() => handleRemoveFromCart(i.id)}>
+                הסר מהעגלה <i className="fa fa-shopping-cart"></i>
               </button>
-              <button>
+              <button onClick={() => handleAddToLove(i.id)}>
                 הוסף למועדפים <i className="fa fa-heart"></i>
               </button>
             </div>
           </div>
         ))}
+      </div>
+      <div>
+        <Link to="/buy">סיים קניה</Link>
       </div>
     </main>
   );
