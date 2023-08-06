@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from 'react-modal';
 
 const CartItem = ({ name, price, size, onRemove }) => (
   <div>
@@ -22,6 +23,7 @@ const Buy = () => {
       { id: 4, name: "T-Shirt", price: 20, size: "M" },
     ]);
   }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
@@ -31,8 +33,17 @@ const Buy = () => {
   };
   const handleBuy = () => {
     //fetch to delete all and update the total
-    alert("buy");
+    //alert("buy");
+    openModal();
+  };
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
     navigate("/");
+
   };
 
   return (
@@ -49,6 +60,11 @@ const Buy = () => {
       ))}
       <p>Total: ${totalAmount}</p>
       <button onClick={handleBuy}>Secure Payment: </button>
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        <h2>סיימת קניה!</h2>
+        <p>סה"כ שילמת {totalAmount} שקלים</p>
+        <button onClick={closeModal}>לעמוד הראשי</button>
+      </Modal>
     </main>
   );
 };
