@@ -39,17 +39,6 @@ const ClothesList = () => {
     }
   };
 
-//   const handleScroll = () => {
-//     if (
-//       Math.ceil(window.innerHeight + document.documentElement.scrollTop) !==
-//         document.documentElement.offsetHeight ||
-//       isFetching
-//     )
-//       return;
-//     setIsFetching(true);
-//     console.log(isFetching);
-//   };
-
   // Attach the scroll event listener when the component mounts
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

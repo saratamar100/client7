@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import "../style/style.css";
-import Search from "./Search";
+import Scroll from "./Scroll_gpt";
 
 const Accesories = () => {
+  const url = "";
   useEffect(() => {
     document.title = "אקססוריז";
     return () => {
       document.title = "חנות בגדים";
     };
   }, []);
-  const accessories = [];
   return (
     <main>
       <h2 id="accessories">אקססוריז:</h2>
-      <Search items={accessories}/>
+      <Scroll url={url} />
     </main>
   );
 };
