@@ -18,6 +18,7 @@ import { UserContext } from "./comps/UserContext";
 import Item from "./comps/Item";
 import Logout from "./comps/Logout";
 import Buy from "./comps/Buy";
+import MainPageAdmin from "./comps/MainPageAdmin";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -33,7 +34,11 @@ const App = () => {
       <UserContext.Provider value={{ user, setUser }}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<MainPage />} />
+            {user && user.admin ? (
+              <Route index element={<MainPageAdmin />} />
+            ) : (
+              <Route index element={<MainPage />} />
+            )}
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<SignUp />} />

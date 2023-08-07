@@ -14,19 +14,23 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setUser((user) => ({ username: "gever", password: "gever!" }));
+    setUser((user) => ({ username: "gever", password: "gever!", admin: true }));
     navigate("/");
   };
 
   if (user != null)
     return (
-      <main style={{marginTop: "200px"}}>
-      <div>
-        <p>u r log in</p>
-        <button onClick={()=>{setUser(null)}}>
-          התנתקות
-        </button>
-      </div>
+      <main style={{ marginTop: "200px" }}>
+        <div>
+          <p>u r log in</p>
+          <button
+            onClick={() => {
+              setUser(null);
+            }}
+          >
+            התנתקות
+          </button>
+        </div>
       </main>
     );
 
