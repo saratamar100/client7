@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/MainPageAdmin.css"; // Update the path to your stylesheet
+import "../style/MainPageAdmin.css";
 
 const MainPageAdmin = () => {
   const [itemName, setItemName] = useState("");
@@ -12,12 +12,38 @@ const MainPageAdmin = () => {
   const [sizeQuantityError, setSizeQuantityError] = useState(false);
   const [itemTypeError, setItemTypeError] = useState(false);
   const [itemNameError, setItemNameError] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setSelectedFile(null);
+      setPreviewUrl("");
+      alert("Please select a valid image file (e.g., JPEG, PNG).");
+    }
+  };
+  const handleDeleteImg = () => {
+    setSelectedFile(null);
+    setPreviewUrl("");
+  };
 
   const canAddItem = itemType != "" && itemName != "";
 
   const handleAddItem = (e) => {
     e.preventDefault();
-    if (canAddItem && sizes.length > 0) {
+    if (canAddItem && sizes.length > 0 && selectedFile != null) {
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+      formData.append("text", "");
       // fetch
       console.log("Adding item:", itemName, itemType, sizeStocks);
       alert("Adding item:", itemName, itemType, sizeStocks);
@@ -31,14 +57,12 @@ const MainPageAdmin = () => {
       setSizeQuantityError(false);
       setItemTypeError(false);
       setItemNameError(false);
+      setSelectedFile(null);
     } else {
       setItemNameError(itemName === "");
       setItemTypeError(itemType === "");
       if (sizes.length == 0) alert("add sizes");
-      //setSizeNameError(sizeNameInput === "" || sizes.includes(sizeNameInput));
-      //   setSizeQuantityError(
-      //     sizeQuantityInput === "" || sizes.includes(sizeNameInput)
-      //   );
+      if (!selectedFile) alert("add file");
     }
   };
 
@@ -91,6 +115,17 @@ const MainPageAdmin = () => {
             <option value="shirt">Shirt</option>
           </select>
         </label>
+        <div className="upload">
+          <input type="file" onChange={handleFileChange} />
+          {selectedFile && <button onClick={handleDeleteImg}>Delete</button>}
+          {previewUrl && (
+            <img
+              src={previewUrl}
+              alt="Selected"
+              style={{ maxWidth: "100px" }}
+            />
+          )}
+        </div>
         <label>
           Size Name:
           <input
