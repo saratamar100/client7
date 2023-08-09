@@ -19,6 +19,7 @@ import Item from "./comps/Item";
 import Logout from "./comps/Logout";
 import Buy from "./comps/Buy";
 import MainPageAdmin from "./comps/MainPageAdmin";
+import ItemAdmin from "./comps/ItemAdmin";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -34,23 +35,28 @@ const App = () => {
       <UserContext.Provider value={{ user, setUser }}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {user && user.admin ? (
-              <Route index element={<MainPageAdmin />} />
-            ) : (
-              <Route index element={<MainPage />} />
-            )}
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/love" element={<ItemsLove />} />
-            <Route path="/cart" element={<ShoppingCart />} />
+            {user == null || !user.admin ? (
+              <>
+                <Route path="/love" element={<ItemsLove />} />
+                <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/buy" element={<Buy />} />
+                <Route index element={<MainPage />} />
+                <Route path="/item/:id" element={<Item />} />
+              </>
+            ) : (
+              <>
+                <Route index element={<MainPageAdmin />} />
+                <Route path="/item/:id" element={<ItemAdmin />} />
+              </>
+            )}
             <Route path="/shirts" element={<Shirts />} />
             <Route path="/skirts" element={<Skirts />} />
             <Route path="/dresses" element={<Dresses />} />
             <Route path="/shoes" element={<Shoes />} />
             <Route path="/accessories" element={<Accessories />} />
-            <Route path="/item/:id" element={<Item />} />
-            <Route path="/buy" element={<Buy />} />
             <Route path="/size" element={<TableSize />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>

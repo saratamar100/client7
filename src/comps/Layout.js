@@ -16,16 +16,22 @@ function Layout() {
                 <i className="fa fa-sign-in"></i>
               </Link>
             </li>
-            <li className="header_-list__item">
-              <Link className="header_-list__link" to="/love">
-                <i className="fa fa-heart"></i>
-              </Link>
-            </li>
-            <li className="header_-list__item">
-              <Link className="header_-list__link" to="/cart">
-                <i className="fa fa-shopping-cart"></i>
-              </Link>
-            </li>
+            {user == null || !user.admin ? (
+              <>
+                <li className="header_-list__item">
+                  <Link className="header_-list__link" to="/love">
+                    <i className="fa fa-heart"></i>
+                  </Link>
+                </li>
+                <li className="header_-list__item">
+                  <Link className="header_-list__link" to="/cart">
+                    <i className="fa fa-shopping-cart"></i>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
             <li className="header_-list__item">
               <Link className="header_-list__link" to="/">
                 <i className="fa fa-home"></i>
