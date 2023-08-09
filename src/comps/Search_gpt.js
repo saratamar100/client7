@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import SearchList from "./SearchList"; // Make sure to import your SearchList component
 import "../style/search.css";
 
-function Search({ onSearch, onSortChange, items }) {
+function Search({ onSearch, onSortChange, items, onDelete }) {
   const [searchField, setSearchField] = useState("");
   const [sortBy, setSortBy] = useState("none");
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
-    onSearch(e.target.value); 
+    onSearch(e.target.value);
   };
 
   const handleSortChange = (e) => {
     const newSortValue = e.target.value;
     setSortBy(newSortValue);
-    onSortChange(newSortValue); 
+    onSortChange(newSortValue);
   };
 
   function searchList() {
-    return <SearchList filteredItems={items} />;
+    return <SearchList filteredItems={items} onDelete={onDelete} />;
   }
 
   return (

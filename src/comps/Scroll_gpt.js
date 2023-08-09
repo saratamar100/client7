@@ -71,6 +71,9 @@ const Scroll = ({ url }) => {
   }, []);
   useEffect(() => {
     //initialFetch();
+    //!!!!!!!!!!!!!!!
+    setItems([{id:999}])
+    alert("1st")
   }, []);
 
   const handleSearch = (query) => {
@@ -86,12 +89,17 @@ const Scroll = ({ url }) => {
     setGroupIndex(0);
     setIsFetching(true);
   };
+  const handleCardDelete = (cardId) => {
+    setItems(items=>items.filter((item) => item.id !== cardId));
+  };
+  
 
   return (
     <Search
       onSearch={handleSearch}
       onSortChange={handleSortChange}
       items={items}
+      onDelete={handleCardDelete} 
     />
   );
 };
