@@ -89,6 +89,14 @@ const MainPageAdmin = () => {
       [size]: stock,
     }));
   };
+  const deleteSize = (size) => {
+    setSizes((sizes) => sizes.filter((s) => s != size));
+    setSizeStocks((stock) => {
+      const updatedSizeStocks = { ...stock };
+      delete updatedSizeStocks[size];
+      return updatedSizeStocks;
+    });
+  };
 
   return (
     <main>
@@ -157,6 +165,13 @@ const MainPageAdmin = () => {
                 onChange={(e) => handleSizeStockChange(size, e.target.value)}
               />
             </label>
+            <button
+              onClick={() => {
+                deleteSize(size);
+              }}
+            >
+              del
+            </button>
           </div>
         ))}
         <button type="submit">Add Item</button>
