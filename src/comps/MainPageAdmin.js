@@ -62,7 +62,7 @@ const MainPageAdmin = () => {
       setItemNameError(itemName === "");
       setItemTypeError(itemType === "");
       if (sizes.length == 0) alert("add sizes");
-      if (!selectedFile) alert("add file");
+      else if (!selectedFile) alert("add file");
     }
   };
 
