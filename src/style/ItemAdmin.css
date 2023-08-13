@@ -1,0 +1,39 @@
+/* .update-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.update-button:before {
+    content: "\1F58A";
+    font-size: 20px;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: black;
+}
+
+.delete-button:before {
+    content: "\1F5D1";
+    font-size: 20px;
+}
+
+.save-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.save-button:before {
+    content: "\1F4BE";
+    font-size: 20px;
+} */
+.button-item{
+    
+}

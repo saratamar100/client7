@@ -170,7 +170,7 @@ const MainPageAdmin = () => {
                 deleteSize(size);
               }}
             >
-              del
+              מחק <i className="fa fa-trash"></i>
             </button>
           </div>
         ))}

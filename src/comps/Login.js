@@ -23,7 +23,7 @@ const Login = () => {
       <main style={{ marginTop: "200px" }}>
         <div>
           <p>u r log in</p>
-          <button
+          <button className="button-log"
             onClick={() => {
               setUser(null);
             }}
@@ -38,15 +38,15 @@ const Login = () => {
     <main>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <div class="imgcontainer">
-            <img src="./image/logo.png" alt="Avatar" class="avatar" />
+          <div className="imgcontainer">
+            <img src="./image/logo.png" alt="Avatar" className="avatar" />
           </div>
 
           <legend id="log_in">התחברות לאתר</legend>
           <div>
             <label for="username">שם משתמש:</label>
             <input
-              class="big"
+              className="big"
               type="text"
               placeholder="הכנס שם משתמש"
               id="username"
@@ -58,7 +58,7 @@ const Login = () => {
           <div>
             <label for="password">סיסמא:</label>
             <input
-              class="big"
+              className="big"
               type="password"
               placeholder="הכנס סיסמא"
               id="password"
@@ -68,7 +68,7 @@ const Login = () => {
           </div>
 
           <div>
-            <button type="submit" onclick="">
+            <button className="button-log" type="submit" onclick="">
               התחבר
             </button>
           </div>
@@ -85,11 +85,11 @@ const Login = () => {
             </label>
           </div>
 
-          <div class="container">
-            <button type="reset" class="cancelbtn">
+          <div className="container">
+            <button type="reset" className="button-log cancelbtn">
               איפוס
             </button>
-            <span class="psw">
+            <span className="psw">
               <a href="./error_page.html">שכחתי סיסמא</a>
               <tr>
                 {" "}

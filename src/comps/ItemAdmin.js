@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../style/ItemAdmin.css";
 
 const ItemAdmin = () => {
   const params = useParams();
@@ -215,13 +216,14 @@ const ItemAdmin = () => {
                     }
                   />
                 </label>
+
                 <button
-                  style={{ width: "10px" }}
+                className="button-item"
                   onClick={() => {
                     deleteSize(size);
                   }}
                 >
-                  del
+                  מחק <i className="fa fa-trash"></i>
                 </button>
               </div>
             ))}

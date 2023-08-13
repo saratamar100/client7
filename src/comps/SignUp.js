@@ -19,13 +19,18 @@ const SignUp = () => {
   };
   if (user != null)
     return (
-      <main style={{marginTop: "200px"}}>
-      <div>
-        <p>u r log in</p>
-        <button onClick={()=>{setUser(null)}}>
-          התנתקות
-        </button>
-      </div>
+      <main style={{ marginTop: "200px" }}>
+        <div>
+          <p>u r log in</p>
+          <button
+            className="button-log"
+            onClick={() => {
+              setUser(null);
+            }}
+          >
+            התנתקות
+          </button>
+        </div>
       </main>
     );
 
@@ -34,14 +39,14 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend id="sign_in">הרשמה לאתר</legend>
-          <div class="imgcontainer">
-            <img src="./image/logo.png" alt="Avatar" class="avatar" />
+          <div className="imgcontainer">
+            <img src="./image/logo.png" alt="Avatar" className="avatar" />
           </div>
 
           <div>
             <label for="username">שם משתמש:</label>
             <input
-              class="big"
+              className="big"
               type="text"
               placeholder="הכנס שם משתמש"
               id="username"
@@ -51,11 +56,11 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label class="bold font_big" for="date">
+            <label className="bold font_big" for="date">
               תאריך לידה:
             </label>
             <input
-              class="small"
+              className="small"
               type="date"
               id="date"
               placeholder="הכנס סיסמא"
@@ -66,7 +71,7 @@ const SignUp = () => {
           <div>
             <label for="tel">מספר טלפון:</label>
             <input
-              class="big"
+              className="big"
               type="tel"
               id="tel"
               placeholder="הכנס מספר פלאפון"
@@ -78,7 +83,7 @@ const SignUp = () => {
           <div>
             <label for="email">מייל:</label>
             <input
-              class="big"
+              className="big"
               type="email"
               placeholder="הכנס כתובת email"
               id="email"
@@ -90,7 +95,7 @@ const SignUp = () => {
           <div>
             <label for="password">סיסמא:</label>
             <input
-              class="big"
+              className="big"
               type="password"
               id="password"
               placeholder="הכנס סיסמא"
@@ -102,7 +107,7 @@ const SignUp = () => {
           <div>
             <label for="password_again">הכנס שוב את הסיסמא:</label>
             <input
-              class="big"
+              className="big"
               type="password"
               id="password_again"
               placeholder="הכנס שוב את הסיסמא"
@@ -149,7 +154,7 @@ const SignUp = () => {
 
           <div>
             <textarea
-              class="big"
+              className="big"
               id="point"
               name="point"
               placeholder="הערות"
@@ -157,16 +162,16 @@ const SignUp = () => {
           </div>
 
           <div>
-            <button type="submit" onclick="">
+            <button className="button-log" type="submit" onclick="">
               הירשם
             </button>
           </div>
 
-          <div class="container">
-            <button type="reset" class="cancelbtn">
+          <div className="container">
+            <button type="reset" className="button-log cancelbtn">
               איפוס
             </button>
-            <span class="psw">
+            <span className="psw">
               <Link to="/login">יש לי כבר חשבון</Link>
             </span>
           </div>
