@@ -18,9 +18,9 @@ const ItemAdmin = () => {
     // fetch
     setItem({
       id: params.id,
-      name: "Example T-Shirt",
-      price: 19.99,
-      img: "",
+      name: "חולצה לדוגמא",
+      price: 20,
+      img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT_Pu6E7HVA3fLV6RdJwaSQNzhpTZtROJqGI4MH4_5E7wuY5-pQGl4NjkleRkcPds-m44wOpHrOQ6atvqCQKvfYgCoQLU-P4gLQvKPNC_XzC6dP21wdb0Mv&usqp=CAc",
       stock: {
         M: 6,
         L: 0,
@@ -128,59 +128,91 @@ const ItemAdmin = () => {
 
   if (!item.stock) return <main></main>;
   return (
-    <main>
-      <div>
+    <main className="main-container">
+      <div className="card">
         <h1>{item.name}</h1>
         {editableDetails.name ? (
           <div>
-            <label>Name:</label>
+            <label>
+              <strong>שם:</strong>
+            </label>
             <input
               type="text"
               value={updatedDetails.name || item.name}
               onChange={(e) => handleDetailChange("name", e.target.value)}
             />
-            <button onClick={() => handleSaveDetail("name")}>Save</button>
-            <button onClick={() => handleCancelEditDetail("name")}>
-              Cancel
+            <button
+              className="button-item"
+              onClick={() => handleSaveDetail("name")}
+            >
+              שמור <i className="fa fa-floppy-o"></i>
+            </button>
+            <button
+              className="button-item"
+              onClick={() => handleCancelEditDetail("name")}
+            >
+              בטל <i className="fa fa-times"></i>
             </button>
           </div>
         ) : (
           <div>
-            <p>Name: {item.name}</p>
-            <button onClick={() => handleEditDetail("name")}>Edit</button>
+            <p>
+              <strong>שם:</strong> {item.name}
+            </p>
+            <button
+              className="button-item"
+              onClick={() => handleEditDetail("name")}
+            >
+              ערוך <i className="fa fa-pencil"></i>
+            </button>
           </div>
         )}
         {/*image*/}
-        <img src={item.img} />
+        <img src={item.img} className="image-admin" />
 
         {/* Price */}
         {editableDetails.price ? (
           <div>
-            <label>Price:</label>
+            <label>מחיר:</label>
             <input
               type="number"
               value={updatedDetails.price || item.price}
               onChange={(e) => handleDetailChange("price", e.target.value)}
             />
-            <button onClick={() => handleSaveDetail("price")}>Save</button>
-            <button onClick={() => handleCancelEditDetail("price")}>
-              Cancel
+            <button
+              className="button-item"
+              onClick={() => handleSaveDetail("price")}
+            >
+              שמור <i className="fa fa-floppy-o"></i>
+            </button>
+            <button
+              className="button-item"
+              onClick={() => handleCancelEditDetail("price")}
+            >
+              בטל <i className="fa fa-times"></i>
             </button>
           </div>
         ) : (
           <div>
-            <p>Price: {item.price}</p>
-            <button onClick={() => handleEditDetail("price")}>Edit</button>
+            <p>
+              <strong>מחיר:</strong> {item.price} שקלים
+            </p>
+            <button
+              className="button-item"
+              onClick={() => handleEditDetail("price")}
+            >
+              ערוך <i className="fa fa-pencil"></i>
+            </button>
           </div>
         )}
 
         {/* Stock */}
         {editableDetails.stock ? (
           <div>
-            <label>Stock:</label>
+            <label>מלאי:</label>
             <div className="adding">
               <label>
-                Size Name:
+                שם המידה:
                 <input
                   type="text"
                   value={sizeNameInput}
@@ -188,15 +220,19 @@ const ItemAdmin = () => {
                 />
               </label>
               <label>
-                Quantity:
+                כמות:
                 <input
                   type="number"
                   value={sizeQuantityInput}
                   onChange={(e) => setSizeQuantityInput(e.target.value)}
                 />
               </label>
-              <button type="button" onClick={handleAddSize}>
-                Add
+              <button
+                className="button-item"
+                type="button"
+                onClick={handleAddSize}
+              >
+                הוסף <i className="fa fa-plus"></i>
               </button>
             </div>
             {Object.keys(updatedDetails.stock || item.stock).map((size) => (
@@ -218,7 +254,7 @@ const ItemAdmin = () => {
                 </label>
 
                 <button
-                className="button-item"
+                  className="button-item"
                   onClick={() => {
                     deleteSize(size);
                   }}
@@ -227,24 +263,37 @@ const ItemAdmin = () => {
                 </button>
               </div>
             ))}
-            <button onClick={() => handleSaveDetail("stock")}>Save</button>
-            <button onClick={() => handleCancelEditDetail("stock")}>
-              Cancel
+            <button
+              className="button-item"
+              onClick={() => handleSaveDetail("stock")}
+            >
+              שמור <i className="fa fa-floppy-o"></i>
+            </button>
+            <button
+              className="button-item"
+              onClick={() => handleCancelEditDetail("stock")}
+            >
+              בטל <i className="fa fa-times"></i>
             </button>
           </div>
         ) : (
           <div>
             <div>
-              <h1>Stock:</h1>
+              <h1>מלאי:</h1>
               <ul>
                 {Object.entries(item.stock).map(([key, value]) => (
-                  <li key={key}>
+                  <li className="li-admin" key={key}>
                     <strong>{key}:</strong> {value}
                   </li>
                 ))}
               </ul>
             </div>
-            <button onClick={() => handleEditDetail("stock")}>Edit</button>
+            <button
+              className="button-item"
+              onClick={() => handleEditDetail("stock")}
+            >
+              ערוך <i className="fa fa-pencil"></i>
+            </button>
           </div>
         )}
       </div>
