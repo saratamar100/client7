@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style/MainPageAdmin.css";
+import "../style/ItemAdmin.css";
 
 const MainPageAdmin = () => {
   const [itemName, setItemName] = useState("");
@@ -67,7 +68,12 @@ const MainPageAdmin = () => {
   };
 
   const handleAddSize = () => {
-    if (sizeNameInput && sizeQuantityInput && !sizes.includes(sizeNameInput)) {
+    if (
+      sizeNameInput &&
+      sizeQuantityInput &&
+      Number(sizeQuantityInput) >= 0 &&
+      !sizes.includes(sizeNameInput)
+    ) {
       setSizes((prevSizes) => [...prevSizes, sizeNameInput]);
       setSizeStocks((prevSizeStocks) => ({
         ...prevSizeStocks,
@@ -79,7 +85,9 @@ const MainPageAdmin = () => {
       setSizeQuantityError(false);
     } else {
       setSizeNameError(sizeNameInput === "" || sizes.includes(sizeNameInput));
-      setSizeQuantityError(sizeQuantityInput === "");
+      setSizeQuantityError(
+        sizeQuantityInput === "" || Number(sizeQuantityInput) < 0
+      );
     }
   };
 
@@ -99,11 +107,11 @@ const MainPageAdmin = () => {
   };
 
   return (
-    <main>
-      <h2>MainPageAdmin</h2>
-      <form onSubmit={handleAddItem}>
+    <main className="main-conteainer">
+      <h2>הוספת פריט</h2>
+      <form onSubmit={handleAddItem} className="card">
         <label>
-          Item Name:
+          שם הפריט:
           <input
             type="text"
             value={itemName}
@@ -112,30 +120,38 @@ const MainPageAdmin = () => {
           />
         </label>
         <label>
-          Item Type:
+          סוג הפריט:
           <select
             value={itemType}
             onChange={(e) => setItemType(e.target.value)}
-            className={itemTypeError ? "error" : ""}
+            className={itemTypeError ? "error select-admin" : "select-admin"}
           >
-            <option value="">Select type</option>
-            <option value="dress">Dress</option>
-            <option value="shirt">Shirt</option>
+            <option value="">--בחר סוג--</option>
+            <option value="shirt">חולצה</option>
+            <option value="skirt">חצאית</option>
+            <option value="dress">שמלה</option>
+            <option value="shoe">נעל</option>
+            <option value="accesories">אקססוריז</option>
           </select>
         </label>
         <div className="upload">
-          <input type="file" onChange={handleFileChange} />
-          {selectedFile && <button onClick={handleDeleteImg}>Delete</button>}
           {previewUrl && (
             <img
+              className="image-admin"
               src={previewUrl}
               alt="Selected"
-              style={{ maxWidth: "100px" }}
+              style={{ maxWidth: "500px" }}
             />
+          )}
+          <input type="file" onChange={handleFileChange} />
+          {selectedFile && (
+            <button className="button-item" onClick={handleDeleteImg}>
+              מחק <i className="fa fa-trash"></i>
+            </button>
           )}
         </div>
         <label>
-          Size Name:
+          שם המידה:
           <input
             type="text"
             value={sizeNameInput}
@@ -144,7 +160,7 @@ const MainPageAdmin = () => {
           />
         </label>
         <label>
-          Quantity:
+          כמות:
           <input
             type="number"
             value={sizeQuantityInput}
@@ -152,8 +168,8 @@ const MainPageAdmin = () => {
             className={sizeQuantityError ? "error" : ""}
           />
         </label>
-        <button type="button" onClick={handleAddSize}>
-          Add
+        <button className="button-item" type="button" onClick={handleAddSize}>
+          הוסף <i className="fa fa-plus"></i>
         </button>
         {sizes.map((size) => (
           <div key={size}>
@@ -166,6 +182,7 @@ const MainPageAdmin = () => {
               />
             </label>
             <button
+              className="button-item"
               onClick={() => {
                 deleteSize(size);
               }}
@@ -174,7 +191,10 @@ const MainPageAdmin = () => {
             </button>
           </div>
         ))}
-        <button type="submit">Add Item</button>
+        <button className="button-item" type="submit">
+          {" "}
+          הוסף פריט <i className="fa fa-plus"></i>
+        </button>
       </form>
     </main>
   );

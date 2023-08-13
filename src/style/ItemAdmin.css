@@ -85,3 +85,7 @@ ul {
 .fa {
     margin-left: 5px;
 }
+
+.select-admin {
+    display: inline-block;
+}
