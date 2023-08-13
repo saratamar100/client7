@@ -56,19 +56,6 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label className="bold font_big" for="date">
-              תאריך לידה:
-            </label>
-            <input
-              className="small"
-              type="date"
-              id="date"
-              placeholder="הכנס סיסמא"
-              name="date"
-            />
-          </div>
-
-          <div>
             <label for="tel">מספר טלפון:</label>
             <input
               className="big"
@@ -114,51 +101,6 @@ const SignUp = () => {
               name="Password_again"
               required
             />
-          </div>
-
-          <div>
-            <label>מידת בגדים:</label>
-            <input
-              type="checkbox"
-              id="vehicle1"
-              name="vehicle1"
-              value="one_size"
-            />
-            <label for="vehicle1"> OS </label>
-            <input type="checkbox" id="vehicle2" name="vehicle2" value="xxs" />
-            <label for="vehicle2"> XXS - 32 </label>
-            <input type="checkbox" id="vehicle3" name="vehicle3" value="xs" />
-            <label for="vehicle3"> XS - 34 </label>
-            <input type="checkbox" id="vehicle4" name="vehicle4" value="s" />
-            <label for="vehicle4"> S - 36 </label>
-            <input type="checkbox" id="vehicle5" name="vehicle5" value="m" />
-            <label for="vehicle5"> M - 38 </label>
-            <input type="checkbox" id="vehicle6" name="vehicle6" value="l" />
-            <label for="vehicle6"> L - 40 </label>
-            <input type="checkbox" id="vehicle7" name="vehicle7" value="xl" />
-            <label for="vehicle7"> XL - 42 </label>
-            <input type="checkbox" id="vehicle8" name="vehicle8" value="xxl" />
-            <label for="vehicle8"> XXL - 44 </label>
-          </div>
-
-          <div>
-            <label for="shoes_size">מידת נעליים:</label>
-            <select id="shoes_size" name="Shoes_size" required>
-              <option value="34-36">34-36</option>
-              <option value="36-38">36-38</option>
-              <option value="38-40">38-40</option>
-              <option value="40-42">40-42</option>
-              <option value="42-44">42-44</option>
-            </select>
-          </div>
-
-          <div>
-            <textarea
-              className="big"
-              id="point"
-              name="point"
-              placeholder="הערות"
-            ></textarea>
           </div>
 
           <div>

@@ -116,7 +116,7 @@ const MainPageAdmin = () => {
             type="text"
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
-            className={itemNameError ? "error" : ""}
+            className={itemNameError ? "error input" : "input"}
           />
         </label>
         <label>
@@ -143,7 +143,7 @@ const MainPageAdmin = () => {
               style={{ maxWidth: "500px" }}
             />
           )}
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" onChange={handleFileChange}/>
           {selectedFile && (
             <button className="button-item" onClick={handleDeleteImg}>
               מחק <i className="fa fa-trash"></i>
@@ -156,7 +156,7 @@ const MainPageAdmin = () => {
             type="text"
             value={sizeNameInput}
             onChange={(e) => setSizeNameInput(e.target.value)}
-            className={sizeNameError ? "error" : ""}
+            className={sizeNameError ? "error input" : "input"}
           />
         </label>
         <label>
@@ -165,7 +165,7 @@ const MainPageAdmin = () => {
             type="number"
             value={sizeQuantityInput}
             onChange={(e) => setSizeQuantityInput(e.target.value)}
-            className={sizeQuantityError ? "error" : ""}
+            className={sizeQuantityError ? "error input" : "input"}
           />
         </label>
         <button className="button-item" type="button" onClick={handleAddSize}>
@@ -176,6 +176,7 @@ const MainPageAdmin = () => {
             <label>
               {size}:
               <input
+              className="input"
                 type="number"
                 value={sizeStocks[size] || ""}
                 onChange={(e) => handleSizeStockChange(size, e.target.value)}
