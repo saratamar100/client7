@@ -14,7 +14,7 @@ const TableSize = () => {
       <section id="size_table">
         <div>
           <h2>המרת מידות נעליים</h2>
-          <table className="blueTable">
+          <table className="table">
             <thead>
               <tr>
                 <th>אירופה וישראל</th>
@@ -135,7 +135,7 @@ const TableSize = () => {
         </div>
         <div>
           <h2>המרת מידות בגדים:</h2>
-          <table className="blueTable">
+          <table className="table">
             <thead>
               <tr>
                 <th>מידה/מדינה</th>
