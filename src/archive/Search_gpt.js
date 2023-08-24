@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchList from "./SearchList"; // Make sure to import your SearchList component
+import SearchList from "../comps/SearchList"; // Make sure to import your SearchList component
 import "../style/search.css";
 
 function Search({ onSearch, onSortChange, items, onDelete }) {

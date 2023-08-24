@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "../style/MainPageAdmin.css";
 import "../style/ItemAdmin.css";
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const MainPageAdmin = () => {
   const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
   const [itemType, setItemType] = useState("");
   const [sizeStocks, setSizeStocks] = useState({});
   const [sizeNameInput, setSizeNameInput] = useState("");
@@ -13,8 +16,10 @@ const MainPageAdmin = () => {
   const [sizeQuantityError, setSizeQuantityError] = useState(false);
   const [itemTypeError, setItemTypeError] = useState(false);
   const [itemNameError, setItemNameError] = useState(false);
+  const [itemPriceError, setItemPriceError] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
+  const { user, setUser } = useContext(UserContext);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -29,7 +34,7 @@ const MainPageAdmin = () => {
     } else {
       setSelectedFile(null);
       setPreviewUrl("");
-      alert("Please select a valid image file (e.g., JPEG, PNG).");
+      alert("אנא בחר קובץ תמונה חוקי (לדוגמה, JPEG, PNG).");
     }
   };
   const handleDeleteImg = () => {
@@ -37,19 +42,33 @@ const MainPageAdmin = () => {
     setPreviewUrl("");
   };
 
-  const canAddItem = itemType != "" && itemName != "";
+  const canAddItem = itemType != "" && itemName != "" && itemPrice != "";
 
   const handleAddItem = (e) => {
     e.preventDefault();
     if (canAddItem && sizes.length > 0 && selectedFile != null) {
       const formData = new FormData();
       formData.append("image", selectedFile);
-      formData.append("text", "");
+      formData.append("item_description", itemName);
+      formData.append("type", itemType);
+      formData.append("price", itemPrice);
+      formData.append("stock", JSON.stringify(sizeStocks));
       // fetch
+      try {
+        const response = fetch(
+          `http://localhost:3001/api/items?username=${user.username}&password=${user.password}`,
+          {
+            method: "post",
+            body: formData,
+          }
+        );
+      } catch (error) {}
+
       console.log("Adding item:", itemName, itemType, sizeStocks);
-      alert("Adding item:", itemName, itemType, sizeStocks);
+      alert("מוסיף פריט:", itemName, itemType, sizeStocks);
       setItemName("");
       setItemType("");
+      setItemPrice("");
       setSizeStocks({});
       setSizeNameInput("");
       setSizeQuantityInput("");
@@ -58,12 +77,15 @@ const MainPageAdmin = () => {
       setSizeQuantityError(false);
       setItemTypeError(false);
       setItemNameError(false);
+      setItemPriceError(false);
       setSelectedFile(null);
+      setPreviewUrl("");
     } else {
       setItemNameError(itemName === "");
       setItemTypeError(itemType === "");
-      if (sizes.length == 0) alert("add sizes");
-      else if (!selectedFile) alert("add file");
+      setItemPriceError(itemPrice === "");
+      if (sizes.length == 0) alert("הוסף מלאי");
+      else if (!selectedFile) alert("הוסף תמונה");
     }
   };
 
@@ -109,31 +131,50 @@ const MainPageAdmin = () => {
   return (
     <main className="main-conteainer">
       <h2>הוספת פריט</h2>
-      <form onSubmit={handleAddItem} className="card">
-        <label>
-          שם הפריט:
-          <input
-            type="text"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-            className={itemNameError ? "error input" : "input"}
-          />
-        </label>
-        <label>
-          סוג הפריט:
-          <select
-            value={itemType}
-            onChange={(e) => setItemType(e.target.value)}
-            className={itemTypeError ? "error select-admin" : "select-admin"}
-          >
-            <option value="">--בחר סוג--</option>
-            <option value="shirt">חולצה</option>
-            <option value="skirt">חצאית</option>
-            <option value="dress">שמלה</option>
-            <option value="shoe">נעל</option>
-            <option value="accesories">אקססוריז</option>
-          </select>
-        </label>
+      <form
+        onSubmit={handleAddItem}
+        className="card"
+        enctype="multipart/form-data"
+      >
+        <div>
+          <label>
+            שם הפריט:
+            <input
+              type="text"
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+              className={itemNameError ? "error input" : "input"}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            סוג הפריט:
+            <select
+              value={itemType}
+              onChange={(e) => setItemType(e.target.value)}
+              className={itemTypeError ? "error select-admin" : "select-admin"}
+            >
+              <option value="">--בחר סוג--</option>
+              <option value="Shirt">חולצה</option>
+              <option value="Skirt">חצאית</option>
+              <option value="Dress">שמלה</option>
+              <option value="Shoes">נעל</option>
+              <option value="Accessories">אקססוריז</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>
+            מחיר הפריט:
+            <input
+              type="number"
+              value={itemPrice}
+              onChange={(e) => setItemPrice(e.target.value)}
+              className={itemPriceError ? "error input" : "input"}
+            />
+          </label>
+        </div>
         <div className="upload">
           {previewUrl && (
             <img
@@ -143,7 +184,7 @@ const MainPageAdmin = () => {
               style={{ maxWidth: "500px" }}
             />
           )}
-          <input type="file" onChange={handleFileChange}/>
+          <input type="file" onChange={handleFileChange} />
           {selectedFile && (
             <button className="button-item" onClick={handleDeleteImg}>
               מחק <i className="fa fa-trash"></i>
@@ -176,7 +217,7 @@ const MainPageAdmin = () => {
             <label>
               {size}:
               <input
-              className="input"
+                className="input"
                 type="number"
                 value={sizeStocks[size] || ""}
                 onChange={(e) => handleSizeStockChange(size, e.target.value)}
@@ -192,10 +233,11 @@ const MainPageAdmin = () => {
             </button>
           </div>
         ))}
-        <button className="button-item" type="submit">
-          {" "}
-          הוסף פריט <i className="fa fa-plus"></i>
-        </button>
+        <div>
+          <button className="button-item" type="submit">
+            הוסף פריט <i className="fa fa-plus"></i>
+          </button>
+        </div>
       </form>
     </main>
   );

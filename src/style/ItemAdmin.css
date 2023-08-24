@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
-    margin-top: 120px;
+    margin-top: 170px;
 }
 
 .card {
@@ -12,13 +12,10 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    /* Adjust the maximum width as needed */
+    max-width: 90%;
     width: 100%;
     margin: 0 auto;
-    /* Center the card horizontally */
     text-align: center;
-    /* Center the content within the card */
 }
 
 h1 {
@@ -43,24 +40,20 @@ h1 {
 
 .image-admin {
     display: block;
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     margin: 20px auto 20px;
-    /* Center the image and add margin below it */
     border: 2px solid #ddd;
-    /* Add a border around the image */
     border-radius: 5px;
-    /* Add rounded corners to the border */
     padding: 5px;
-    /* Add some padding inside the border */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow to the border */
 }
 
 .adding {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 label {
@@ -88,3 +81,13 @@ ul {
 .select-admin {
     display: inline-block;
 }
+
+
+.adding {
+    display: flex;
+    justify-content: center; /* Center items along the main axis */
+    align-items: center; /* Center items along the cross axis */
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  

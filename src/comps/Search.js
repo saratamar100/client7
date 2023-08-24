@@ -2,31 +2,32 @@ import React, { useState } from "react";
 import SearchList from "./SearchList";
 import "../style/search.css";
 
-function Search({ items }) {
+function Search({ items, onDelete }) {
   const [searchField, setSearchField] = useState("");
   const [sortBy, setSortBy] = useState("none");
 
   const filteredItems = items.filter((item) =>
-    item.description.toLowerCase().includes(searchField.toLowerCase())
+    item.item_description.toLowerCase().includes(searchField.toLowerCase())
   );
 
   let sortedItems = [...filteredItems];
 
   if (sortBy != "none")
     sortedItems.sort((a, b) => {
+      console.log(typeof a.date_add);
       switch (sortBy) {
         case "price_asc":
-          return a.cost - b.cost;
+          return a.price - b.price;
         case "price_desc":
-          return b.cost - a.cost;
+          return b.price - a.price;
         case "des_asc":
-          return a.description.localeCompare(b.description);
+          return a.item_description.localeCompare(b.item_description);
         case "des_desc":
-          return b.description.localeCompare(a.description);
+          return b.item_description.localeCompare(a.item_description);
         case "time_asc":
-          return a.time - b.time;
+          return new Date(a.date_add) - new Date(b.date_add);
         case "time_desc":
-          return  b.time - a.time;
+          return new Date(b.date_add) - new Date(a.date_add);
       }
     });
 
@@ -39,32 +40,32 @@ function Search({ items }) {
   };
 
   function searchList() {
-    return <SearchList filteredItems={sortedItems} />;
+    return <SearchList filteredItems={sortedItems} onDelete={onDelete} />;
   }
 
   return (
     <section className="search-section">
       <div>
-        <h2 className="search-title">Search your item</h2>
+        <h2 className="search-title">חפש את הפריט האהוב עלייך</h2>
       </div>
       <div>
         <input
           className="search-input"
           type="search"
-          placeholder="Search Item"
+          placeholder="חפש פריט"
           onChange={handleChange}
         />
       </div>
       <div>
-        <label htmlFor="sort-by">Sort by: </label>
+        <label htmlFor="sort-by">מיין לפי: </label>
         <select id="sort-by" value={sortBy} onChange={handlePriceSortChange}>
-          <option value="none">None</option>
-          <option value="price_asc">Lowest to Highest Price</option>
-          <option value="price_desc">Highest to Lowest Price</option>
-          <option value="des_asc">Description A-Z</option>
-          <option value="des_desc">Description Z-A</option>
-          <option value="time_asc">New to Old</option>
-          <option value="time_desc">Old to New</option>
+          <option value="none">ללא מיון</option>
+          <option value="price_asc">מחיר מהנמוך לגבוה</option>
+          <option value="price_desc">מחיר מהגבוה לנמוך</option>
+          <option value="des_asc">שם בסדר א"ב</option>
+          <option value="des_desc">שם בסדר א"ב הפוך</option>
+          <option value="time_asc">מהחדש לישן</option>
+          <option value="time_desc">מהישן לחדש</option>
         </select>
       </div>
       {searchList()}

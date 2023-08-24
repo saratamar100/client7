@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/style.css";
 import { UserContext } from "./UserContext";
+import imageHeart from "../image/Heart.png";
 
 const ItemsLove = () => {
   useEffect(() => {
@@ -13,55 +14,38 @@ const ItemsLove = () => {
   const { user, setUser } = useContext(UserContext);
   const [items, setItems] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState({});
+  const getLike = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/like?username=${user.username}&password=${user.password}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data);
+      setItems(data);
+    } catch (error) {}
+  };
   useEffect(() => {
-    setItems([
-      {
-        cost: 5,
-        img: "",
-        description: "adF",
-        availableSizes: ["S", "M"],
-        unavailableSizes: ["L"],
-        id: 1,
-      },
-      {
-        cost: 5,
-        img: "",
-        description: "adF",
-        availableSizes: ["S", "M"],
-        unavailableSizes: [],
-        id: 2,
-      },
-      {
-        cost: 5,
-        img: "",
-        description: "adF",
-        availableSizes: ["S", "M"],
-        unavailableSizes: [],
-        id: 3,
-      },
-      {
-        cost: 5,
-        img: "",
-        description: "adF",
-        availableSizes: ["S", "M"],
-        unavailableSizes: [],
-        id: 4,
-      },
-      {
-        cost: 5,
-        img: "",
-        description: "adF",
-        availableSizes: ["S", "M"],
-        unavailableSizes: [],
-        id: 5,
-      },
-    ]);
+    getLike();
   }, []);
 
-  const handleAddToCart = (id) => {
+  const handleAddToCart = async (id, e) => {
+    e.preventDefault();
     const size = selectedSizes[id];
     if (size) {
       // Fetch or other logic to add item to cart with selected size
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/cart/${id}/${size}?username=${user.username}&password=${user.password}`,
+          { method: "POST" }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+      } catch (error) {}
 
       // Clear the selected size after adding to cart
       setSelectedSizes((prevSelectedSizes) => ({
@@ -69,14 +53,28 @@ const ItemsLove = () => {
         [id]: undefined,
       }));
     } else {
-      alert("בחר מידה");//change?
+      alert("בחר מידה"); //change?
     }
     //remove from loved?
   };
 
-  const handleRemoveFromLove = (id) => {
+  const handleRemoveFromLove = async (id, e) => {
+    e.preventDefault();
+    e.preventDefault();
     //fetch
-    //set
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/like/${id}?username=${user.username}&password=${user.password}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setItems((items) => items.filter((i) => i.item_id != id));
+      }
+    } catch (error) {
+      throw error;
+    }
   };
 
   if (user == null)
@@ -84,7 +82,7 @@ const ItemsLove = () => {
       <main className="main_shopping_card">
         <img
           className="image_center height_size"
-          src="./image/Heart.png"
+          src={imageHeart}
           alt="item_love"
         />
         <p>בשביל לראות פריטים מועדפים עליך להתחבר</p>
@@ -103,7 +101,7 @@ const ItemsLove = () => {
       <main className="main_shopping_card">
         <img
           className="image_center height_size"
-          src="./image/Heart.png"
+          src={imageHeart}
           alt="item_love"
         />
         <p>עדיין לא הוספת פריטים מועדפים :(</p>
@@ -122,43 +120,52 @@ const ItemsLove = () => {
       <div className="grid-container">
         {items.map((i) => (
           <div className="item">
-            <img src={i.img} alt="" />
-            <div className="description">
-              <p>{i.description}</p>
-            </div>
-            <div className="item_cost">
-              <p>{i.cost} ש"ח</p>
-            </div>
-            <select
-              style={{ width: "50%" }}
-              value={selectedSizes[i.id] || ""}
-              onChange={(e) =>
-                setSelectedSizes((prevSelectedSizes) => ({
-                  ...prevSelectedSizes,
-                  [i.id]: e.target.value,
-                }))
-              }
-            >
-              <option value="">בחר גודל</option>
-              {[...i.availableSizes, ...i.unavailableSizes].map((size) => (
-                <option
-                  key={size}
-                  value={size}
-                  disabled={i.unavailableSizes.includes(size)}
-                >
-                  {size}
-                </option>
-              ))}
-            </select>
+            <Link to={"/item/" + i.item_id}>
+              <img className="img" src={i.image} alt="" />
+              <div className="description">
+                <p>{i.item_description}</p>
+              </div>
+              <div className="item_cost">
+                <p>{i.cost} ש"ח</p>
+              </div>
+              <select
+                style={{ width: "50%" }}
+                value={selectedSizes[i.item_id] || ""}
+                onClick={(e) => e.preventDefault()}
+                onChange={(e) =>
+                  setSelectedSizes((prevSelectedSizes) => ({
+                    ...prevSelectedSizes,
+                    [i.item_id]: e.target.value,
+                  }))
+                }
+              >
+                <option value="">בחר גודל</option>
+                {[...i.availableSizes, ...i.outOfStockSizes].map((size) => (
+                  <option
+                    key={size}
+                    value={size}
+                    disabled={i.outOfStockSizes.includes(size)}
+                  >
+                    {size}
+                  </option>
+                ))}
+              </select>
 
-            <div className="item_insert">
-              <button onClick={() => handleAddToCart(i.id)}>
-                הוסף לעגלה <i className="fa fa-shopping-cart"></i>
-              </button>
-              <button onClick={() => handleRemoveFromLove(i.id)}>
-                הסר מהמועדפים <i className="fa fa-heart"></i>
-              </button>
-            </div>
+              <div className="item_insert">
+                <button
+                  className="button-item"
+                  onClick={(e) => handleAddToCart(i.item_id, e)}
+                >
+                  הוסף לעגלה <i className="fa fa-shopping-cart"></i>
+                </button>
+                <button
+                  className="button-item"
+                  onClick={(e) => handleRemoveFromLove(i.item_id, e)}
+                >
+                  הסר מהמועדפים <i className="fa fa-heart"></i>
+                </button>
+              </div>
+            </Link>
           </div>
         ))}
       </div>

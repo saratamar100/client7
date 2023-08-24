@@ -39,9 +39,9 @@ const Scroll = ({ url }) => {
             case "price_desc":
               return b.cost - a.cost;
             case "des_asc":
-              return a.description.localeCompare(b.description);
+              return a.item_description.localeCompare(b.item_description);
             case "des_desc":
-              return b.description.localeCompare(a.description);
+              return b.item_description.localeCompare(a.item_description);
             case "time_asc":
               return a.time - b.time;
             case "time_desc":

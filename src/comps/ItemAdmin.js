@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style/ItemAdmin.css";
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 const ItemAdmin = () => {
   const params = useParams();
   const [item, setItem] = useState({});
   const [editableDetails, setEditableDetails] = useState({
-    name: false,
+    item_description: false,
     price: false,
     stock: false,
   });
   const [updatedDetails, setUpdatedDetails] = useState({});
   const [sizeNameInput, setSizeNameInput] = useState("");
   const [sizeQuantityInput, setSizeQuantityInput] = useState("");
-
+  const { user, setUser } = useContext(UserContext);
+  const getItem = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/items/${params.id}?username=${user.username}&password=${user.password}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data[0]);
+      setItem(data[0]);
+    } catch (error) {}
+  };
   useEffect(() => {
-    // fetch
-    setItem({
-      id: params.id,
-      name: "חולצה לדוגמא",
-      price: 20,
-      img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT_Pu6E7HVA3fLV6RdJwaSQNzhpTZtROJqGI4MH4_5E7wuY5-pQGl4NjkleRkcPds-m44wOpHrOQ6atvqCQKvfYgCoQLU-P4gLQvKPNC_XzC6dP21wdb0Mv&usqp=CAc",
-      stock: {
-        M: 6,
-        L: 0,
-        XL: 5,
-      },
-    });
+    getItem();
   }, []);
 
   const handleEditDetail = (detailName) => {
@@ -41,30 +45,36 @@ const ItemAdmin = () => {
     }));
   };
 
-  const handleSaveDetail = (detailName) => {
+  const handleSaveDetail = async (detailName) => {
     // fetch
-
-    if (detailName === "stock")
-      // setEditableDetails((prevEditableDetails) => ({
-      //   ...prevEditableDetails,
-      //   stock: false,
-      // }));
-      // setItem((prevItem) => ({
-      //   ...prevItem,
-      //   stock: { ...updatedDetails.stock },
-      // }));
-      setUpdatedDetails((prevUpdatedDetails) => ({
-        ...prevUpdatedDetails,
-        stock: {},
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/items/${params.id}?username=${user.username}&password=${user.password}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ [detailName]: updatedDetails[detailName] }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      if (detailName === "stock")
+        setUpdatedDetails((prevUpdatedDetails) => ({
+          ...prevUpdatedDetails,
+          stock: {},
+        }));
+      setEditableDetails((prevEditableDetails) => ({
+        ...prevEditableDetails,
+        [detailName]: false,
       }));
-    setEditableDetails((prevEditableDetails) => ({
-      ...prevEditableDetails,
-      [detailName]: false,
-    }));
-    setItem((prevItem) => ({
-      ...prevItem,
-      [detailName]: updatedDetails[detailName] || prevItem[detailName],
-    }));
+      setItem((prevItem) => ({
+        ...prevItem,
+        [detailName]: updatedDetails[detailName] || prevItem[detailName],
+      }));
+    } catch (error) {}
   };
 
   const handleCancelEditDetail = (detailName) => {
@@ -122,7 +132,7 @@ const ItemAdmin = () => {
       setSizeNameInput("");
       setSizeQuantityInput("");
     } else {
-      alert("fill all");
+      alert(" יש למלא את כל השדות");
     }
   };
 
@@ -130,26 +140,28 @@ const ItemAdmin = () => {
   return (
     <main className="main-container">
       <div className="card">
-        <h1>{item.name}</h1>
-        {editableDetails.name ? (
+        <h1>{item.item_description}</h1>
+        {editableDetails.item_description ? (
           <div>
             <label>
               <strong>שם:</strong>
             </label>
             <input
               type="text"
-              value={updatedDetails.name || item.name}
-              onChange={(e) => handleDetailChange("name", e.target.value)}
+              value={updatedDetails.item_description || item.item_description}
+              onChange={(e) =>
+                handleDetailChange("item_description", e.target.value)
+              }
             />
             <button
               className="button-item"
-              onClick={() => handleSaveDetail("name")}
+              onClick={() => handleSaveDetail("item_description")}
             >
               שמור <i className="fa fa-floppy-o"></i>
             </button>
             <button
               className="button-item"
-              onClick={() => handleCancelEditDetail("name")}
+              onClick={() => handleCancelEditDetail("item_description")}
             >
               בטל <i className="fa fa-times"></i>
             </button>
@@ -157,18 +169,18 @@ const ItemAdmin = () => {
         ) : (
           <div>
             <p>
-              <strong>שם:</strong> {item.name}
+              <strong>שם:</strong> {item.item_description}
             </p>
             <button
               className="button-item"
-              onClick={() => handleEditDetail("name")}
+              onClick={() => handleEditDetail("item_description")}
             >
               ערוך <i className="fa fa-pencil"></i>
             </button>
           </div>
         )}
         {/*image*/}
-        <img src={item.img} className="image-admin" />
+        <img src={item.image} className="image-admin" />
 
         {/* Price */}
         {editableDetails.price ? (

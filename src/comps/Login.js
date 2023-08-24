@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../style/Style_sign_log.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
@@ -12,10 +12,41 @@ const Login = () => {
   }, []);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setUser((user) => ({ username: "gever", password: "gever!", admin: true }));
-    navigate("/");
+    try {
+      console.log(`http://localhost:3001/api/users/${username.trim()}`, {
+        method: "GET",
+        password,
+      });
+      const response = await fetch(
+        `http://localhost:3001/api/users?username=${username.trim()}&password=${password}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 404) return alert("שם משתמש וסיסמא אינם נכונים");
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log(data[0]);
+      setUser({
+        username: data[0].username,
+        admin: data[0].is_admin == 1,
+        password,
+      });
+      navigate("/");
+    } catch (error) {
+      throw error;
+    }
   };
 
   if (user != null)
@@ -23,7 +54,8 @@ const Login = () => {
       <main style={{ marginTop: "200px" }}>
         <div>
           <p>u r log in</p>
-          <button className="button-log"
+          <button
+            className="button-log"
             onClick={() => {
               setUser(null);
             }}
@@ -38,10 +70,6 @@ const Login = () => {
     <main>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <div className="imgcontainer">
-            <img src="./image/logo.png" alt="Avatar" className="avatar" />
-          </div>
-
           <legend id="log_in">התחברות לאתר</legend>
           <div>
             <label for="username">שם משתמש:</label>
@@ -51,6 +79,10 @@ const Login = () => {
               placeholder="הכנס שם משתמש"
               id="username"
               name="Username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
               required
             />
           </div>
@@ -63,6 +95,10 @@ const Login = () => {
               placeholder="הכנס סיסמא"
               id="password"
               name="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
             />
           </div>
@@ -90,11 +126,7 @@ const Login = () => {
               איפוס
             </button>
             <span className="psw">
-              <a href="./error_page.html">שכחתי סיסמא</a>
-              <tr>
-                {" "}
-                / <Link to="/signup">אין לי חשבון</Link>
-              </tr>
+              <Link to="/signup">אין לי חשבון</Link>
             </span>
           </div>
         </fieldset>

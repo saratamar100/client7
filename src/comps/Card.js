@@ -2,27 +2,49 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import OK1Audio from "../audio/OK1.mp3";
 import { UserContext } from "./UserContext";
+// import "../style/ItemAdmin.css"
 
 function Card({ item, onDelete }) {
   const { user, setUser } = useContext(UserContext);
-  const handleAddToCart = (e) => {
+  const handleAddToLove = async (e) => {
     e.preventDefault();
-    playAudio(OK1Audio);
-    //fetch
+    if (user != null) {
+      //fetch
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/like/${item.item_id}?username=${user.username}&password=${user.password}`,
+          {
+            method: "POST",
+          }
+        );
+        playAudio(OK1Audio);
+      } catch (error) {}
+    } else alert("התחבר");
   };
-  const handleAddToLove = (e) => {
-    e.preventDefault();
-    playAudio(OK1Audio);
-    //fetch
-  };
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
+      "אתה בטוח שאתה רוצה למחוק את הפריט?"
     );
     if (confirmDelete) {
       //fetch
-      onDelete(item.id);
+
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/items/${item.item_id}?username=${user.username}&password=${user.password}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        onDelete(item.item_id);
+      } catch (error) {
+        throw error;
+      }
+
+      
     }
   };
   const handleEdit = (e) => {
@@ -33,31 +55,28 @@ function Card({ item, onDelete }) {
     new Audio(url).play();
   };
   return (
-    <div className="item" key={item.id}>
-      <Link to={"/item/" + item.id}>
-        <img className="img" src={item.img} alt="" />
+    <div className="item" key={item.item_id}>
+      <Link to={"/item/" + item.item_id}>
+        <img className="img" src={item.image} alt="" />
         <div className="description">
-          <p>{item.description}</p>
+          <p>{item.item_description}</p>
         </div>
         <div className="item_cost">
-          <p>{item.cost} ש"ח</p>
+          <p>{item.price} ש"ח</p>
         </div>
         {(user == null || !user.admin) && (
-          <div className="item_insert">
-            <button onClick={handleAddToCart}>
-              הוסף לעגלה <i className="fa fa-shopping-cart"></i>
-            </button>
-            <button onClick={handleAddToLove}>
+          <div>
+            <button className="button-item" onClick={handleAddToLove}>
               הוסף למעודפים <i className="fa fa-heart"></i>
             </button>
           </div>
         )}
         {user != null && user.admin && (
           <div className="item_insert">
-            <button onClick={handleEdit}>
+            <button className="button-item" onClick={handleEdit}>
               ערוך <i className="fa fa-pencil"></i>
             </button>
-            <button onClick={handleDelete}>
+            <button className="button-item" onClick={handleDelete}>
               מחק <i className="fa fa-trash"></i>
             </button>
           </div>

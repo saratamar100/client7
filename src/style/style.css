@@ -120,9 +120,11 @@ footer {
 /* grid - image */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    /* grid-template-columns: repeat(4, auto); */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
     padding: 10px;
 }
+
 
 .item {
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -156,22 +158,22 @@ h2 {
     padding: 10px 0px;
 }
 
-.item_insert button {
+/* .item_insert button {
     background-color: white;
     padding: 10px;
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-radius: 0% 40% 0%;
     color: black;
-}
+} */
 
-.item_insert button:nth-child(2):hover {
+/* .item_insert button:nth-child(2):hover {
     background-color: rgba(204, 204, 204, 0.301);
 }
 
 .item_insert button:first-child:hover {
     background-color: rgba(76, 175, 80, 0.2);
-}
+} */
 
 .item_cost p {
     font-weight: bolder;

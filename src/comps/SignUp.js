@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Style_sign_log.css";
 import { UserContext } from "./UserContext";
 
 const SignUp = () => {
+  const [username, setUsername] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
   useEffect(() => {
     document.title = "הרשמה";
     return () => {
@@ -14,14 +17,15 @@ const SignUp = () => {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // login({ username: "gever", password: "gever!" });
-    // navigate("/");
+    try {
+      const response = fetch();
+    } catch (error) {}
   };
   if (user != null)
     return (
       <main style={{ marginTop: "200px" }}>
         <div>
-          <p>u r log in</p>
+          <p>אתה כבר מחובר</p>
           <button
             className="button-log"
             onClick={() => {
@@ -39,10 +43,6 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend id="sign_in">הרשמה לאתר</legend>
-          <div className="imgcontainer">
-            <img src="./image/logo.png" alt="Avatar" className="avatar" />
-          </div>
-
           <div>
             <label for="username">שם משתמש:</label>
             <input
@@ -51,6 +51,8 @@ const SignUp = () => {
               placeholder="הכנס שם משתמש"
               id="username"
               name="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -87,6 +89,8 @@ const SignUp = () => {
               id="password"
               placeholder="הכנס סיסמא"
               name="Password"
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
               required
             />
           </div>
@@ -99,6 +103,8 @@ const SignUp = () => {
               id="password_again"
               placeholder="הכנס שוב את הסיסמא"
               name="Password_again"
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
               required
             />
           </div>
