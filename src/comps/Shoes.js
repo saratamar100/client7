@@ -21,7 +21,9 @@ const Shoes = () => {
       const data = await response.json();
       console.log(data);
       setShoes(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getShoes();

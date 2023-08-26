@@ -85,9 +85,12 @@ ul {
 
 .adding {
     display: flex;
-    justify-content: center; /* Center items along the main axis */
-    align-items: center; /* Center items along the cross axis */
+    justify-content: center;
+    align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-  }
-  
+}
+
+.zero {
+    color: red;
+}

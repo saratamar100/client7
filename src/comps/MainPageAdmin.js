@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/MainPageAdmin.css";
 import "../style/ItemAdmin.css";
 import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 
 const MainPageAdmin = () => {
   const [itemName, setItemName] = useState("");
@@ -19,7 +19,7 @@ const MainPageAdmin = () => {
   const [itemPriceError, setItemPriceError] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -62,7 +62,9 @@ const MainPageAdmin = () => {
             body: formData,
           }
         );
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error:", error);
+      }
 
       console.log("Adding item:", itemName, itemType, sizeStocks);
       alert("מוסיף פריט:", itemName, itemType, sizeStocks);

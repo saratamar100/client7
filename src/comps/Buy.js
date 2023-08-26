@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import imageCart from "../image/Shopping_Cart.png";
 import "../style/buy.css";
 
@@ -35,7 +35,9 @@ const Buy = () => {
       const data = await response.json();
       console.log(data);
       setCartItems(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getCart();

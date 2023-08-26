@@ -21,7 +21,9 @@ const Shirts = () => {
       const data = await response.json();
       console.log(data);
       setShirts(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getShirts();

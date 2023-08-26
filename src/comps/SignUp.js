@@ -1,27 +1,61 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Style_sign_log.css";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     document.title = "הרשמה";
     return () => {
       document.title = "חנות בגדים";
     };
   }, []);
-  const { user, setUser } = useContext(UserContext);
+
+  const { user, updateUser } = useContext(UserContext);
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (password1 !== password2) {
+      setErrorMessage("הסיסמאות לא תואמות");
+      return;
+    }
+
     try {
-      const response = fetch();
-    } catch (error) {}
+      const response = await fetch("http://localhost:3001/api/users", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username.trim(),
+          password: password1.trim(),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 409) {
+        setErrorMessage("המשתמש כבר קיים");
+      } else if (!response.ok) {
+        setErrorMessage("ארעה שגיאה, נא נסו שוב.");
+      } else {
+        updateUser({
+          username,
+          admin: false,
+          password: password1,
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
-  if (user != null)
+
+  if (user !== null) {
     return (
       <main style={{ marginTop: "200px" }}>
         <div>
@@ -29,7 +63,7 @@ const SignUp = () => {
           <button
             className="button-log"
             onClick={() => {
-              setUser(null);
+              updateUser(null);
             }}
           >
             התנתקות
@@ -37,6 +71,7 @@ const SignUp = () => {
         </div>
       </main>
     );
+  }
 
   return (
     <main>
@@ -44,7 +79,7 @@ const SignUp = () => {
         <fieldset>
           <legend id="sign_in">הרשמה לאתר</legend>
           <div>
-            <label for="username">שם משתמש:</label>
+            <label htmlFor="username">שם משתמש:</label>
             <input
               className="big"
               type="text"
@@ -58,7 +93,7 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label for="tel">מספר טלפון:</label>
+            <label htmlFor="tel">מספר טלפון:</label>
             <input
               className="big"
               type="tel"
@@ -70,7 +105,7 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label for="email">מייל:</label>
+            <label htmlFor="email">מייל:</label>
             <input
               className="big"
               type="email"
@@ -82,7 +117,7 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label for="password">סיסמא:</label>
+            <label htmlFor="password">סיסמא:</label>
             <input
               className="big"
               type="password"
@@ -96,7 +131,7 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label for="password_again">הכנס שוב את הסיסמא:</label>
+            <label htmlFor="password_again">הכנס שוב את הסיסמא:</label>
             <input
               className="big"
               type="password"
@@ -109,8 +144,10 @@ const SignUp = () => {
             />
           </div>
 
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
           <div>
-            <button className="button-log" type="submit" onclick="">
+            <button className="button-log" type="submit">
               הירשם
             </button>
           </div>

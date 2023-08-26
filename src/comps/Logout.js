@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    setUser(null);
+    updateUser(null);
     navigate(`/`, { replace: true });
   }, []);
 

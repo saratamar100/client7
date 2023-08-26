@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style/Style_sign_log.css";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 
 const Login = () => {
   useEffect(() => {
@@ -10,7 +10,7 @@ const Login = () => {
       document.title = "חנות בגדים";
     };
   }, []);
-  const { user, setUser } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,14 +38,14 @@ const Login = () => {
       }
       const data = await response.json();
       console.log(data[0]);
-      setUser({
+      updateUser({
         username: data[0].username,
         admin: data[0].is_admin == 1,
         password,
       });
       navigate("/");
     } catch (error) {
-      throw error;
+      console.error("Error:", error);
     }
   };
 
@@ -57,7 +57,7 @@ const Login = () => {
           <button
             className="button-log"
             onClick={() => {
-              setUser(null);
+              updateUser(null);
             }}
           >
             התנתקות

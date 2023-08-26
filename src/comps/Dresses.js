@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/style.css";
 import Search from "./Search";
-import { UserContext } from "./UserContext";
 
 const Dresses = () => {
-  const { user, setUser } = useContext(UserContext);
   useEffect(() => {
     document.title = "שמלות";
     return () => {
@@ -23,7 +21,9 @@ const Dresses = () => {
       const data = await response.json();
       console.log(data);
       setDresses(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getDress();

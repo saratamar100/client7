@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../style/style.css";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import OK1Audio from "../audio/OK1.mp3";
 import "../style/ItemAdmin.css";
 
 const Item = () => {
   const params = useParams();
   const [item, setItem] = useState({});
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     document.title = item.item_description;
     return () => {
@@ -31,7 +31,9 @@ const Item = () => {
       const data = await response.json();
       console.log(data[0]);
       setItem(data[0]);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getItem();
@@ -74,7 +76,9 @@ const Item = () => {
         );
         playAudio(OK1Audio);
         setSelectedSize("");
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else alert("התחבר");
   };
   const handleAddToLove = async (e) => {
@@ -87,7 +91,9 @@ const Item = () => {
           { method: "POST" }
         );
         playAudio(OK1Audio);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else alert("התחבר");
   };
   if (!item.availableSizes) return <main></main>; ///////////!

@@ -1,10 +1,10 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../style/style.css";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import { useContext } from "react";
 
 function Layout() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return (
     <div>
       <header>

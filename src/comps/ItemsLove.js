@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/style.css";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import imageHeart from "../image/Heart.png";
 
 const ItemsLove = () => {
@@ -11,7 +11,7 @@ const ItemsLove = () => {
       document.title = "חנות בגדים";
     };
   }, []);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [items, setItems] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState({});
   const getLike = async () => {
@@ -25,7 +25,9 @@ const ItemsLove = () => {
       const data = await response.json();
       console.log(data);
       setItems(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getLike();

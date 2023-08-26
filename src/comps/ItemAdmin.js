@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../style/ItemAdmin.css";
 import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 
 const ItemAdmin = () => {
   const params = useParams();
@@ -15,7 +15,7 @@ const ItemAdmin = () => {
   const [updatedDetails, setUpdatedDetails] = useState({});
   const [sizeNameInput, setSizeNameInput] = useState("");
   const [sizeQuantityInput, setSizeQuantityInput] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const getItem = async () => {
     try {
       const response = await fetch(
@@ -27,7 +27,9 @@ const ItemAdmin = () => {
       const data = await response.json();
       console.log(data[0]);
       setItem(data[0]);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getItem();
@@ -64,7 +66,7 @@ const ItemAdmin = () => {
       if (detailName === "stock")
         setUpdatedDetails((prevUpdatedDetails) => ({
           ...prevUpdatedDetails,
-          stock: {},
+          stock: undefined,
         }));
       setEditableDetails((prevEditableDetails) => ({
         ...prevEditableDetails,
@@ -74,7 +76,9 @@ const ItemAdmin = () => {
         ...prevItem,
         [detailName]: updatedDetails[detailName] || prevItem[detailName],
       }));
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const handleCancelEditDetail = (detailName) => {
@@ -294,8 +298,11 @@ const ItemAdmin = () => {
               <h1>מלאי:</h1>
               <ul>
                 {Object.entries(item.stock).map(([key, value]) => (
-                  <li className="li-admin" key={key}>
-                    <strong>{key}:</strong> {value}
+                  <li
+                    className={value == 0 ? "li-admin zero" : "li-admin"}
+                    key={key}
+                  >
+                    <strong style={{ color: "black" }}>{key}:</strong> {value}
                   </li>
                 ))}
               </ul>

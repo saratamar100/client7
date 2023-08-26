@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import OK1Audio from "../audio/OK1.mp3";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 // import "../style/ItemAdmin.css"
 
 function Card({ item, onDelete }) {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const handleAddToLove = async (e) => {
     e.preventDefault();
     if (user != null) {
@@ -18,14 +18,14 @@ function Card({ item, onDelete }) {
           }
         );
         playAudio(OK1Audio);
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else alert("התחבר");
   };
   const handleDelete = async (e) => {
     e.preventDefault();
-    const confirmDelete = window.confirm(
-      "אתה בטוח שאתה רוצה למחוק את הפריט?"
-    );
+    const confirmDelete = window.confirm("אתה בטוח שאתה רוצה למחוק את הפריט?");
     if (confirmDelete) {
       //fetch
 
@@ -41,10 +41,8 @@ function Card({ item, onDelete }) {
         }
         onDelete(item.item_id);
       } catch (error) {
-        throw error;
+        console.error("Error:", error);
       }
-
-      
     }
   };
   const handleEdit = (e) => {

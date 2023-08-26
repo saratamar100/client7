@@ -14,7 +14,7 @@ import Shoes from "./comps/Shoes";
 import Dresses from "./comps/Dresses";
 import Accessories from "./comps/Accessories";
 import TableSize from "./comps/TableSize";
-import { UserContext } from "./comps/UserContext";
+import UserProvider from "./comps/UserProvider";
 import Item from "./comps/Item";
 import Logout from "./comps/Logout";
 import Buy from "./comps/Buy";
@@ -23,16 +23,9 @@ import ItemAdmin from "./comps/ItemAdmin";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  // const login = useCallback(
-  //   (u) => {
-  //     setUser((user) => ({ ...user, ...u }));
-  //   },
-  //   [user]
-  // );
-
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/login" element={<Login />} />
@@ -61,7 +54,7 @@ const App = () => {
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
-      </UserContext.Provider>
+      </UserProvider>
     </BrowserRouter>
   );
 };

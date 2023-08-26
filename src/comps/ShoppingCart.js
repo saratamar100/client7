@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style/style.css";
 import { Link } from "react-router-dom";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./UserProvider";
 import imageCart from "../image/Shopping_Cart.png"
 
 const ShoppingCart = () => {
@@ -11,7 +11,7 @@ const ShoppingCart = () => {
       document.title = "חנות בגדים";
     };
   }, []);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [items, setItems] = useState([]);
   const getCart = async () => {
     try {
@@ -24,7 +24,9 @@ const ShoppingCart = () => {
       const data = await response.json();
       console.log(data);
       setItems(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   useEffect(() => {
     getCart();
@@ -45,7 +47,7 @@ const ShoppingCart = () => {
         );
       }
     } catch (error) {
-      throw error;
+      console.error("Error:", error);
     }
   };
   const handleAddToLove = async (id, e) => {
@@ -59,7 +61,9 @@ const ShoppingCart = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error:", error);
+    }
     //fetch
     //set
   };
